@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f27b193df4839449116708392916f2, type: 3}
+  m_Name: Skeleton_basicData
+  m_EditorClassIdentifier: 
+  liveName: "\u5C0F\u9AB7\u9AC5"
+  health: 20
+  maxHealth: 20
+  attack: 5
+  defense: 0
+  attackSpeed: 2
+  cooldown: 3
+  attackRange: 3
+  skillRange: 5
+  level: 1
+  levelPoint: 0
+  maxLevelPoint: 100
+  growthAttackPoint: 1
+  growthHealthPoint: 5
+  growthDefensePoint: 1
+  deadPoint: 10
+  description: "\u88AB\u4EA1\u7075\u53EC\u5524\u7684\u4F4E\u7EA7\u751F\u7269\uFF0C\u51E0\u4E4E\u6CA1\u6709\u751F\u547D\u5A01\u80C1\u3002"

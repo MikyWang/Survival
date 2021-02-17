@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3a92f786b6d564894831f5016bca1f, type: 3}
+  m_Name: Bat_spawnData
+  m_EditorClassIdentifier: 
+  monsterPrefab: {fileID: 1411682786832475109, guid: af8da034e410df3459d6b769fc3ee238, type: 3}
+  remainingTime: 0
+  period: 60
+  count: 5
