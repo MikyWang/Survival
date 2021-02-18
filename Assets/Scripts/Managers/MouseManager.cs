@@ -5,7 +5,7 @@ using System;
 
 public class MouseManager : Singleton<MouseManager>
 {
-    public Texture2D arrow;
+    public Texture2D arrow, cutTree;
     public event Action<Vector3> OnEnvironmentClicked;
 
     RaycastHit hitInfo;
@@ -32,6 +32,9 @@ public class MouseManager : Singleton<MouseManager>
             {
                 case "Ground":
                     Cursor.SetCursor(arrow, new Vector2(16, 16), CursorMode.Auto);
+                    break;
+                case "Tree":
+                    Cursor.SetCursor(cutTree, new Vector2(16, 16), CursorMode.Auto);
                     break;
             }
         }
