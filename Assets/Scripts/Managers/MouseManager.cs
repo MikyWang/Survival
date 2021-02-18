@@ -5,7 +5,7 @@ using System;
 
 public class MouseManager : Singleton<MouseManager>
 {
-    public Texture2D arrow, cutTree;
+    public Texture2D arrow, select, cutTree;
     public event Action<Vector3> OnEnvironmentClicked;
 
     RaycastHit hitInfo;
@@ -36,6 +36,9 @@ public class MouseManager : Singleton<MouseManager>
                 case "Tree":
                     Cursor.SetCursor(cutTree, new Vector2(16, 16), CursorMode.Auto);
                     break;
+                case "Player":
+                    Cursor.SetCursor(select, new Vector2(16, 16), CursorMode.Auto);
+                    break;
             }
         }
 
@@ -47,10 +50,16 @@ public class MouseManager : Singleton<MouseManager>
         if (Input.GetMouseButtonDown(0) && hitInfo.collider)
         {
             var col = hitInfo.collider;
-            if (col.tag == "Ground")
+            switch (col.tag)
             {
-                OnEnvironmentClicked?.Invoke(hitInfo.point);
+                case "Ground":
+                    OnEnvironmentClicked?.Invoke(hitInfo.point);
+                    break;
+                case "Player":
+                    GameManager.Instance.RegisterSelectors(col.GetComponent<ISelected>());
+                    break;
             }
+
         }
     }
 

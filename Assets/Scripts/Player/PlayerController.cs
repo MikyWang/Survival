@@ -4,27 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public partial class PlayerController : ControllerBase
+public partial class PlayerController : ControllerBase, ISelected
 {
     private NavMeshAgent agent;
     private Animator animator;
     private LiveStats stats;
-    public override float speed
-    {
-        get
-        {
-            return animator.GetFloat(_speedHash);
-        }
-        set
-        {
-            animator.SetFloat(_speedHash, value);
-        }
-    }
-
-    public override bool isHitting { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public override bool isDizzying { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public override bool isThinking { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public override bool useSkill { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     private void Awake()
     {
@@ -39,8 +23,7 @@ public partial class PlayerController : ControllerBase
     }
     private void Start()
     {
-        GameManager.Instance.RegisterController(this);
-        MouseManager.Instance.OnEnvironmentClicked += Move;
+        GameManager.Instance.RegisterSelectors(this);
     }
 
     private void OnDestroy()
@@ -70,5 +53,27 @@ public partial class PlayerController : ControllerBase
             ///TODO:角色死亡处理
             // isDead = true;
         }
+    }
+
+    public void Select(GameObject highlightingPrefab)
+    {
+        var ring = transform.Find("Highlight Ring(Clone)");
+        if (ring != null)
+        {
+            ring.gameObject.SetActive(true);
+        }
+        else
+        {
+            Instantiate(highlightingPrefab, transform);
+        }
+        MouseManager.Instance.OnEnvironmentClicked += Move;
+
+    }
+
+    public void UnSelect()
+    {
+        var ring = transform.Find("Highlight Ring(Clone)");
+        ring?.gameObject.SetActive(false);
+        MouseManager.Instance.OnEnvironmentClicked -= Move;
     }
 }

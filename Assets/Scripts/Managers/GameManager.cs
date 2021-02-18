@@ -7,8 +7,9 @@ using Cinemachine;
 public class GameManager : Singleton<GameManager>
 {
     public GameObject player;
+    public GameObject highlightingPrefab;
     public List<GameObject> patrolPoints { get; private set; }
-    public ControllerBase currentController { get; private set; }
+    public List<ISelected> selectedPlayers { get; private set; }
     CinemachineFreeLook Cam;
     override protected void Awake()
     {
@@ -16,6 +17,8 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(this);
 
         patrolPoints = GameObject.FindGameObjectsWithTag("PatrolPoint").ToList();
+        selectedPlayers = new List<ISelected>();
+        Cam = FindObjectOfType<CinemachineFreeLook>();
     }
 
     private void Start()
@@ -23,12 +26,24 @@ public class GameManager : Singleton<GameManager>
         Instantiate(player);
     }
 
-    public void RegisterController(ControllerBase controller)
+    public void RegisterSelectors(ISelected selectedPlayer)
     {
-        currentController = controller;
-        Cam = FindObjectOfType<CinemachineFreeLook>();
-        Cam.Follow = controller.transform;
-        Cam.LookAt = controller.transform;
+        if (selectedPlayers.Contains(selectedPlayer))
+        {
+            selectedPlayers.Remove(selectedPlayer);
+            selectedPlayer.UnSelect();
+        }
+        else
+        {
+            selectedPlayers.Add(selectedPlayer);
+            selectedPlayer.Select(highlightingPrefab);
+        }
+        if (selectedPlayers.Count > 0)
+        {
+            Cam.Follow = selectedPlayers[0].selectedObject.transform;
+            Cam.LookAt = selectedPlayers[0].selectedObject.transform;
+        }
+
     }
 
 }

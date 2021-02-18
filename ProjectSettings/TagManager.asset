@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - PatrolPoint
+  - Ring
+  - Tree
   layers:
   - Default
   - TransparentFX
