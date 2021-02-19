@@ -4,48 +4,91 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class RectSelector : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class RectSelector : MonoBehaviour
 {
-    public Image rectImg;
-
+    private RectTransform boxTransform;
     private Vector2 startPos;
-    private Vector2 endPos;
     private bool isSelected = false;
-    private RectTransform rectTransform;
-    private RectTransform panelTransform;
-    private PointerEventData currentPE;
+    private Rect rect;
 
-    private void Start()
+    private void Awake()
     {
-        rectTransform = rectImg.GetComponent<RectTransform>();
-        panelTransform = GetComponent<RectTransform>();
+        boxTransform = GetComponent<RectTransform>();
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    private void StartSelect()
     {
-        startPos = eventData.position;
-        rectTransform.position = startPos;
-        isSelected = true;
-        currentPE = eventData;
+        if (Input.GetMouseButtonDown(0))
+        {
+            startPos = Input.mousePosition;
+            boxTransform.anchoredPosition = startPos;
+            isSelected = true;
+        }
+    }
+
+    private void OnSelect()
+    {
+        if (!isSelected)
+        {
+            boxTransform.sizeDelta = new Vector2(0, 0);
+            return;
+        }
+
+        var mousePos = Input.mousePosition;
+        if (mousePos.x - startPos.x > 0)
+        {
+            if (startPos.y - mousePos.y > 0)
+            {
+                boxTransform.pivot = Vector2.up;
+                boxTransform.sizeDelta = new Vector2(-(startPos.x - mousePos.x), startPos.y - mousePos.y);
+                rect = new Rect(startPos.x, startPos.y - boxTransform.sizeDelta.y, boxTransform.sizeDelta.x, boxTransform.sizeDelta.y);
+            }
+            else
+            {
+                boxTransform.pivot = Vector2.zero;
+                boxTransform.sizeDelta = new Vector2(-(startPos.x - mousePos.x), -(startPos.y - mousePos.y));
+                rect = new Rect(startPos.x, startPos.y, boxTransform.sizeDelta.x, boxTransform.sizeDelta.y);
+            }
+        }
+        else
+        {
+            if (startPos.y - mousePos.y > 0)
+            {
+                boxTransform.pivot = Vector2.one;
+                boxTransform.sizeDelta = new Vector2(startPos.x - mousePos.x, startPos.y - mousePos.y);
+                rect = new Rect(startPos.x - boxTransform.sizeDelta.x, startPos.y - boxTransform.sizeDelta.y, boxTransform.sizeDelta.x, boxTransform.sizeDelta.y);
+            }
+            else
+            {
+                boxTransform.pivot = Vector2.right;
+                boxTransform.sizeDelta = new Vector2(startPos.x - mousePos.x, -(startPos.y - mousePos.y));
+                rect = new Rect(startPos.x - boxTransform.sizeDelta.x, startPos.y, boxTransform.sizeDelta.x, boxTransform.sizeDelta.y);
+            }
+        }
+
+
     }
 
     private void LateUpdate()
     {
-        if (!isSelected) return;
 
-        endPos = currentPE.position;
-        Debug.Log($"startPos{startPos}---endPos{endPos}");
-        var width = Mathf.Abs(endPos.x - startPos.x);
-        var height = Mathf.Abs(endPos.y - startPos.y);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
-        rectImg.gameObject.SetActive(true);
+        StartSelect();
+        OnSelect();
+        EndSelect();
+
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void EndSelect()
     {
-        isSelected = false;
-        rectImg.gameObject.SetActive(false);
+        if (Input.GetMouseButtonUp(0))
+        {
+            isSelected = false;
+
+            if (boxTransform.rect.width < 5 || boxTransform.rect.height < 5) return;
+
+            GameManager.Instance.SelectRangePlayers(rect);
+        }
+
     }
 
 }

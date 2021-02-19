@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Cinemachine;
 
 public class GameManager : Singleton<GameManager>
@@ -27,7 +28,7 @@ public class GameManager : Singleton<GameManager>
     {
         Instantiate(player);
     }
-    public void ToggleSelectors(ISelected selectedPlayer)
+    public void ToggleSelector(ISelected selectedPlayer)
     {
         if (selectedPlayers.Contains(selectedPlayer))
         {
@@ -45,6 +46,23 @@ public class GameManager : Singleton<GameManager>
             Cam.LookAt = selectedPlayers[0].selectedObject.transform;
         }
 
+    }
+
+    public void SelectRangePlayers(Rect rect)
+    {
+        foreach (var player in selectedPlayers)
+        {
+            player.UnSelect();
+        }
+        selectedPlayers.Clear();
+        foreach (ISelected selectedPlayer in playersInView)
+        {
+            Vector2 screenPos = Camera.main.WorldToScreenPoint(selectedPlayer.selectedObject.transform.position);
+            if (rect.Contains(screenPos))
+            {
+                ToggleSelector(selectedPlayer);
+            }
+        }
     }
 
     public void UpdatePlayersInView(ISelected player)

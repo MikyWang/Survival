@@ -47,7 +47,17 @@ public class MouseManager : Singleton<MouseManager>
 
     private void MouseControl()
     {
-        if (Input.GetMouseButtonDown(1) && hitInfo.collider)
+        if (Input.GetMouseButtonDown(0) && hitInfo.collider)
+        {
+            var col = hitInfo.collider;
+            switch (col.tag)
+            {
+                case "Player":
+                    GameManager.Instance.ToggleSelector(col.GetComponent<ISelected>());
+                    break;
+            }
+        }
+        if (Input.GetMouseButton(1) && hitInfo.collider)
         {
             var col = hitInfo.collider;
             switch (col.tag)
@@ -55,11 +65,7 @@ public class MouseManager : Singleton<MouseManager>
                 case "Ground":
                     OnEnvironmentClicked?.Invoke(hitInfo.point);
                     break;
-                case "Player":
-                    GameManager.Instance.ToggleSelectors(col.GetComponent<ISelected>());
-                    break;
             }
-
         }
     }
 

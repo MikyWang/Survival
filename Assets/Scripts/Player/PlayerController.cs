@@ -24,7 +24,7 @@ public partial class PlayerController : ControllerBase, ISelected
     }
     private void Start()
     {
-        GameManager.Instance.ToggleSelectors(this);
+        GameManager.Instance.ToggleSelector(this);
     }
 
     private void OnDestroy()
