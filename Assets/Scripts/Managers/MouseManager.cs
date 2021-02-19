@@ -47,7 +47,7 @@ public class MouseManager : Singleton<MouseManager>
 
     private void MouseControl()
     {
-        if (Input.GetMouseButtonDown(0) && hitInfo.collider)
+        if (Input.GetMouseButtonDown(1) && hitInfo.collider)
         {
             var col = hitInfo.collider;
             switch (col.tag)
