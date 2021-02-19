@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject highlightingPrefab;
     public List<GameObject> patrolPoints { get; private set; }
     public List<ISelected> selectedPlayers { get; private set; }
+    public List<ISelected> playersInView { get; private set; }
     CinemachineFreeLook Cam;
     override protected void Awake()
     {
@@ -18,6 +19,7 @@ public class GameManager : Singleton<GameManager>
 
         patrolPoints = GameObject.FindGameObjectsWithTag("PatrolPoint").ToList();
         selectedPlayers = new List<ISelected>();
+        playersInView = new List<ISelected>();
         Cam = FindObjectOfType<CinemachineFreeLook>();
     }
 
@@ -25,8 +27,7 @@ public class GameManager : Singleton<GameManager>
     {
         Instantiate(player);
     }
-
-    public void RegisterSelectors(ISelected selectedPlayer)
+    public void ToggleSelectors(ISelected selectedPlayer)
     {
         if (selectedPlayers.Contains(selectedPlayer))
         {
@@ -46,4 +47,15 @@ public class GameManager : Singleton<GameManager>
 
     }
 
+    public void UpdatePlayersInView(ISelected player)
+    {
+        if (playersInView.Contains(player) && !player.selectedObject.transform.IsInView())
+        {
+            playersInView.Remove(player);
+        }
+        if (!playersInView.Contains(player) && player.selectedObject.transform.IsInView())
+        {
+            playersInView.Add(player);
+        }
+    }
 }

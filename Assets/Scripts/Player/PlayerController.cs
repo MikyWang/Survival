@@ -20,10 +20,11 @@ public partial class PlayerController : ControllerBase, ISelected
     private void Update()
     {
         speed = agent.velocity.sqrMagnitude;
+        GameManager.Instance.UpdatePlayersInView(this);
     }
     private void Start()
     {
-        GameManager.Instance.RegisterSelectors(this);
+        GameManager.Instance.ToggleSelectors(this);
     }
 
     private void OnDestroy()

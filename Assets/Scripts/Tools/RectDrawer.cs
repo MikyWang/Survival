@@ -60,6 +60,7 @@ public class RectDrawer : MonoBehaviour
             rectMat.SetPass(0);
 
             GL.LoadPixelMatrix();//设置用屏幕坐标绘图
+            // GL.LoadOrtho();
             GL.Begin(GL.QUADS);
             GL.Color(new Color(rectColor.r, rectColor.g, rectColor.b, 0.1f));//设置颜色和透明度，方框内部透明
             GL.Vertex3(start.x, start.y, 0);

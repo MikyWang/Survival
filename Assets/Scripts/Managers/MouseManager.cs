@@ -34,7 +34,7 @@ public class MouseManager : Singleton<MouseManager>
                     Cursor.SetCursor(arrow, new Vector2(0, 0), CursorMode.Auto);
                     break;
                 case "Tree":
-                    Cursor.SetCursor(cutTree, new Vector2(0, 0), CursorMode.Auto);
+                    Cursor.SetCursor(cutTree, new Vector2(16, 16), CursorMode.Auto);
                     break;
                 case "Player":
                     Cursor.SetCursor(select, new Vector2(0, 0), CursorMode.Auto);
@@ -56,7 +56,7 @@ public class MouseManager : Singleton<MouseManager>
                     OnEnvironmentClicked?.Invoke(hitInfo.point);
                     break;
                 case "Player":
-                    GameManager.Instance.RegisterSelectors(col.GetComponent<ISelected>());
+                    GameManager.Instance.ToggleSelectors(col.GetComponent<ISelected>());
                     break;
             }
 
