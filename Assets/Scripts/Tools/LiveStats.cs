@@ -20,7 +20,7 @@ public partial class LiveStats : MonoBehaviour
         liveData.attackSpeed -= Time.deltaTime;
     }
 
-    public void TakeDamage(int damage)
+    public void TakingDamage(int damage)
     {
         var point = Mathf.Max(damage - defense, 1);
         liveData.health = Mathf.Max(liveData.health - point, 0);

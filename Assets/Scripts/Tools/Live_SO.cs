@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "_basicData", menuName = "基本数据/创建新数据")]
+[CreateAssetMenu(fileName = "_basicData", menuName = "数据/创建新基本数据")]
 public class Live_SO : ScriptableObject
 {
     public string liveName; //生物名字

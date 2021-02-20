@@ -121,7 +121,7 @@ public partial class MonsterController : ControllerBase
     /// </summary>
     private void HitTarget()
     {
-        target?.GetComponent<ControllerBase>().TakeDamage(stats.attack);
+        target?.GetComponent<ControllerBase>().TakingDamage(stats.attack);
     }
     public override void Move(Vector3 target)
     {
@@ -130,9 +130,24 @@ public partial class MonsterController : ControllerBase
 
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakingDamage(int damage)
     {
-        stats.TakeDamage(damage);
+        stats.TakingDamage(damage);
+    }
+
+    public override void TakingDizzy()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void TakingHit()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void RecoverHP(int point)
+    {
+        throw new System.NotImplementedException();
     }
 
     private void OnDrawGizmosSelected()

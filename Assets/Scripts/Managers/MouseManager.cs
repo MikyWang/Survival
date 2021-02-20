@@ -7,6 +7,7 @@ public class MouseManager : Singleton<MouseManager>
 {
     public Texture2D arrow, select, cutTree;
     public event Action<Vector3> OnEnvironmentClicked;
+    public event Action<IDamage> OnTreeClicked;
 
     RaycastHit hitInfo;
     override protected void Awake()
@@ -34,7 +35,7 @@ public class MouseManager : Singleton<MouseManager>
                     Cursor.SetCursor(arrow, new Vector2(0, 0), CursorMode.Auto);
                     break;
                 case "Tree":
-                    Cursor.SetCursor(cutTree, new Vector2(16, 16), CursorMode.Auto);
+                    Cursor.SetCursor(cutTree, new Vector2(0, 0), CursorMode.Auto);
                     break;
                 case "Player":
                     Cursor.SetCursor(select, new Vector2(0, 0), CursorMode.Auto);
@@ -64,6 +65,11 @@ public class MouseManager : Singleton<MouseManager>
             {
                 case "Ground":
                     OnEnvironmentClicked?.Invoke(hitInfo.point);
+                    break;
+                case "Tree":
+                    var target = col.GetComponent<IDamage>();
+                    if (target == null) target = col.gameObject.AddComponent<Tree>();
+                    OnTreeClicked?.Invoke(target);
                     break;
             }
         }

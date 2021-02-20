@@ -57,4 +57,6 @@ public partial class MonsterController
         get => animator.GetBool(_useSkill);
         set => animator.SetBool(_useSkill, value);
     }
+
+
 }
