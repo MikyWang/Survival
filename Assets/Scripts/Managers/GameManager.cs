@@ -45,7 +45,6 @@ public class GameManager : Singleton<GameManager>
             Cam.Follow = selectedPlayers[0].selectedObject.transform;
             Cam.LookAt = selectedPlayers[0].selectedObject.transform;
         }
-
     }
 
     public void SelectRangePlayers(Rect rect)
