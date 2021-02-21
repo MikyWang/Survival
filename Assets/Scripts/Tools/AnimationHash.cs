@@ -4,5 +4,8 @@ using UnityEngine;
 
 public static class AnimationHash
 {
-    public static int _isCutting = Animator.StringToHash("isCutting");
+    //TODO:将所有动画hash重构到这里
+    public static readonly int _isCutting = Animator.StringToHash("isCutting");
+    public static readonly int _getHit = Animator.StringToHash("getHit");
+
 }

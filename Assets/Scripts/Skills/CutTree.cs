@@ -39,4 +39,13 @@ public class CutTree : SkillBase
         isCutting = true;
     }
 
+    /// <summary>
+    /// 动画事件
+    /// </summary>
+    void CutDownTree()
+    {
+        target?.defender.transform.LookAt(transform);
+        target?.TakingHit();
+    }
+
 }

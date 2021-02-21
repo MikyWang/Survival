@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Tree : ControllerBase
 {
-    public override float speed { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public override bool isHitting { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public override bool isDizzying { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public override bool isThinking { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public override bool useSkill { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    private Animator animator;
+    public override float speed { get => 0; set { } }
+    public override bool isHitting { get; set; }
+    public override bool isDizzying { get => false; set { } }
+    public override bool isThinking { get => false; set { } }
+    public override bool useSkill { get => false; set { } }
+
+    protected void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public override void Attack()
     {
@@ -37,6 +43,7 @@ public class Tree : ControllerBase
 
     public override void TakingHit()
     {
-        throw new System.NotImplementedException();
+        animator.SetTrigger(AnimationHash._getHit);
     }
+
 }

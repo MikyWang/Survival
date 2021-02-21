@@ -15,7 +15,6 @@ public class IsHitting : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     // override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     // {
-    //     time += Time.deltaTime;
     // }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -31,8 +30,7 @@ public class IsHitting : StateMachineBehaviour
     //}
 
     // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
+    // override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // {
+    // }
 }
