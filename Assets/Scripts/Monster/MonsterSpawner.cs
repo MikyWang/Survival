@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
+    //TODO:所有SO通过somanager获取
     public List<MonsterSpawner_SO> tmp_spawnerDataList;
     public List<Transform> spawnPoints;
     private List<MonsterSpawner_SO> spawnerDataList;

@@ -2168,5 +2168,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd8023484b5b7bf46987e02c0da03bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmp_LiveData: {fileID: 11400000, guid: 1e2e10260bad137409edaaa0a71b39f6, type: 2}
+  soName: skeleton
   liveData: {fileID: 0}

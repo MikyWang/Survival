@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4156010115036207984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4156010115036207986}
+  - component: {fileID: 4156010115036207985}
+  m_Layer: 0
+  m_Name: SOManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4156010115036207986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4156010115036207984}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4156010115036207985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4156010115036207984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba98609673584304a20f33ed037d2ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicDataList:
+  - name: peasant
+    so: {fileID: 11400000, guid: ee27c3f7a3e58d74080968143a4d4d66, type: 2}
+  - name: skeleton
+    so: {fileID: 11400000, guid: 1e2e10260bad137409edaaa0a71b39f6, type: 2}
+  spawnDataList:
+  - name: bat
+    so: {fileID: 11400000, guid: 28a869f658cdf0647a715635b39ced20, type: 2}
+  - name: skeleton
+    so: {fileID: 11400000, guid: 9a1d0b5d1c748d3449e3bb338aea82fc, type: 2}
+  skillDataList:
+  - name: attack
+    so: {fileID: 11400000, guid: 4eb53cd867c38764992709d8ac46cb2f, type: 2}
+  - name: cutTree
+    so: {fileID: 11400000, guid: 1e102a21a2f6b5f44b19aa354eedbacd, type: 2}

@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public partial class LiveStats : MonoBehaviour
 {
-    public Live_SO tmp_LiveData;
-
+    public string soName;
     [HideInInspector]
     public Live_SO liveData;
+    private Live_SO tmp_LiveData => SOManager.Instance.basicDataDic[soName];
 
-    private void Awake()
+    private void Start()
     {
         liveData = Instantiate(tmp_LiveData);
     }
-
     private void Update()
     {
         liveData.cooldown -= Time.deltaTime;
