@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Animator), typeof(LiveStats))]
 public abstract class SkillBase : MonoBehaviour
 {
     public Skill_SO tmp_skillData;
@@ -11,10 +11,12 @@ public abstract class SkillBase : MonoBehaviour
     public Skill_SO skillData;
     public float cooldown => skillData.cooldown;
     protected Animator animator;
+    protected LiveStats stats;
     protected virtual void Awake()
     {
         skillData = Instantiate(tmp_skillData);
         animator = GetComponent<Animator>();
+        stats = GetComponent<LiveStats>();
     }
     protected virtual void Update()
     {
