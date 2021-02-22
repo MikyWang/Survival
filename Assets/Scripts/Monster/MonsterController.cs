@@ -90,7 +90,7 @@ public partial class MonsterController : ControllerBase
             isWalking = false;
             if (!isThinking)
             {
-                animator.SetTrigger(_think);
+                animator.SetTrigger(AnimationHash._think);
                 return;
             }
             var index = UnityEngine.Random.Range(0, 7);
@@ -105,12 +105,12 @@ public partial class MonsterController : ControllerBase
         if (stats.CheckSkill())
         {
             useSkill = true;
-            animator.SetTrigger(_attack);
+            animator.SetTrigger(AnimationHash._attack);
             return;
         }
         if (stats.CheckAttack())
         {
-            animator.SetTrigger(_attack);
+            animator.SetTrigger(AnimationHash._attack);
             return;
         }
 

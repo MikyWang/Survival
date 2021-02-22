@@ -1,17 +1,16 @@
 using UnityEngine;
 public partial class PlayerController
 {
-    private readonly int _speedHash = Animator.StringToHash("speed");
 
     public override float speed
     {
         get
         {
-            return animator.GetFloat(_speedHash);
+            return animator.GetFloat(AnimationHash._speedHash);
         }
         set
         {
-            animator.SetFloat(_speedHash, value);
+            animator.SetFloat(AnimationHash._speedHash, value);
         }
     }
 

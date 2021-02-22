@@ -10,10 +10,20 @@ public class CutTree : SkillBase
 
     public override void Excute(IDamage target)
     {
-        isCutting = false;
         this.target = target;
+        if (skillData.cooldown > 0) return;
         StartCoroutine(Cut());
     }
+
+    override protected void Update()
+    {
+        base.Update();
+        if (skillData.cooldown > 0)
+        {
+            isCutting = false;
+        }
+    }
+
     public override void Excute(Vector3 position)
     {
         throw new System.NotImplementedException();
@@ -44,6 +54,7 @@ public class CutTree : SkillBase
     /// </summary>
     void CutDownTree()
     {
+        skillData.cooldown = tmp_skillData.cooldown;
         target?.defender.transform.LookAt(transform);
         target?.TakingHit();
     }
