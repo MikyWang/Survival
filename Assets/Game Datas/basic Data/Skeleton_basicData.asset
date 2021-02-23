@@ -19,8 +19,7 @@ MonoBehaviour:
   defense: 0
   attackSpeed: 2
   cooldown: 3
-  attackRange: 3
-  skillRange: 5
+  attackRange: 2
   level: 1
   levelPoint: 0
   maxLevelPoint: 100

@@ -5,7 +5,11 @@ using UnityEngine;
 public partial class MonsterController
 {
 
-    public override float speed { get => agent.speed; set => agent.speed = value; }
+    public override float speed
+    {
+        get => animator.GetFloat(AnimationHash.speedHash);
+        set => animator.SetFloat(AnimationHash.speedHash, value);
+    }
 
     public bool isWalking
     {

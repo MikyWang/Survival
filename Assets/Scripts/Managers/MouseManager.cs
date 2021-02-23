@@ -68,7 +68,6 @@ public class MouseManager : Singleton<MouseManager>
                     break;
                 case "Tree":
                     var target = col.GetComponent<IDamage>();
-                    if (target == null) target = col.gameObject.AddComponent<Tree>();
                     OnTreeClicked?.Invoke(target);
                     break;
             }

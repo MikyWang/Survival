@@ -15,10 +15,12 @@ public partial class MonsterController : ControllerBase
     private NavMeshAgent agent;
     private LiveStats stats;
     private MonsterState state;
-    private GameObject target;
+    private IDamage target;
+    private GameObject patrolTarget;
+    private Attack attack;
     private List<GameObject> patrolPoints => GameManager.Instance.patrolPoints;
+    public bool isOnPatrolTarget => patrolTarget == null || Vector3.SqrMagnitude(transform.position - patrolTarget.transform.position) <= agent.stoppingDistance;
     //TODO:将攻击改为使用技能方式.
-    public bool isOnTarget => target == null || Vector3.SqrMagnitude(target.transform.position - transform.position) <= (useSkill ? stats.skillRange : stats.attackRange);
     public bool HasPlayer
     {
         get
@@ -27,7 +29,7 @@ public partial class MonsterController : ControllerBase
             var col = colliders.FirstOrDefault(col => col.CompareTag("Player"));
             if (col != default(Collider))
             {
-                target = col.gameObject;
+                target = col.gameObject.GetComponent<IDamage>();
             }
             return col != default(Collider);
         }
@@ -37,9 +39,11 @@ public partial class MonsterController : ControllerBase
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         stats = GetComponent<LiveStats>();
+        attack = GetComponent<Attack>();
     }
     private void Update()
     {
+        speed = agent.velocity.sqrMagnitude;
         SwitchState();
     }
     private void SwitchState()
@@ -62,19 +66,11 @@ public partial class MonsterController : ControllerBase
         {
             isChasing = false;
             target = null;
+            attack.Interrupt();
             agent.destination = transform.position;
             return;
         }
-        if (isOnTarget)
-        {
-            isWalking = false;
-            agent.destination = transform.position;
-            Attack();
-        }
-        else
-        {
-            Move(target.transform.position);
-        }
+        attack.Excute(target);
     }
 
     private void OnPatrol()
@@ -84,7 +80,7 @@ public partial class MonsterController : ControllerBase
             isChasing = true;
             return;
         }
-        if (isOnTarget)
+        if (isOnPatrolTarget)
         {
             isWalking = false;
             if (!isThinking)
@@ -93,10 +89,10 @@ public partial class MonsterController : ControllerBase
                 return;
             }
             var index = UnityEngine.Random.Range(0, 7);
-            target = patrolPoints[index];
+            patrolTarget = patrolPoints[index];
         }
         if (isThinking) return;
-        Move(target.transform.position);
+        Move(patrolTarget.transform.position);
     }
 
     public override void Attack()
@@ -120,7 +116,7 @@ public partial class MonsterController : ControllerBase
     /// </summary>
     private void HitTarget()
     {
-        target?.GetComponent<IDamage>().TakingDamage(stats.attack);
+        target.TakingDamage(stats.attack);
     }
     public override void Move(Vector3 target)
     {

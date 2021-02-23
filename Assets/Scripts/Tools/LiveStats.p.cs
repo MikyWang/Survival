@@ -9,5 +9,4 @@ public partial class LiveStats
     public int defense => liveData.defense;
     public float attackSpeed => liveData.attackSpeed;
     public float cooldown => liveData.cooldown;
-    public int skillRange => liveData.skillRange;
 }

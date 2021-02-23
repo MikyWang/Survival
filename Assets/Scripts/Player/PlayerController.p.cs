@@ -4,14 +4,8 @@ public partial class PlayerController
 
     public override float speed
     {
-        get
-        {
-            return animator.GetFloat(AnimationHash.speedHash);
-        }
-        set
-        {
-            animator.SetFloat(AnimationHash.speedHash, value);
-        }
+        get => animator.GetFloat(AnimationHash.speedHash);
+        set => animator.SetFloat(AnimationHash.speedHash, value);
     }
 
     public override bool isHitting { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }

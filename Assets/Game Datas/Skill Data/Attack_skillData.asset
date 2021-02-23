@@ -19,6 +19,6 @@ MonoBehaviour:
   attack: 2
   level: 1
   maxLevel: 1
-  distance: 1
+  distance: 0
   range: 0
   description: "\u5E38\u89C1\u7684\u653B\u51FB\u624B\u6BB5"

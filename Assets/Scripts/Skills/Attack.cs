@@ -28,7 +28,7 @@ public class Attack : SkillBase
         if (target == null) yield break;
 
         var agent = GetComponent<NavMeshAgent>();
-        while (Vector3.Distance(transform.position, target.defender.transform.position) > skillData.distance)
+        while (Vector3.Distance(transform.position, target.defender.transform.position) > skillDistance)
         {
             agent.destination = target.defender.transform.position;
             yield return null;
