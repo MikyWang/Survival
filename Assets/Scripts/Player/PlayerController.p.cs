@@ -6,11 +6,11 @@ public partial class PlayerController
     {
         get
         {
-            return animator.GetFloat(AnimationHash._speedHash);
+            return animator.GetFloat(AnimationHash.speedHash);
         }
         set
         {
-            animator.SetFloat(AnimationHash._speedHash, value);
+            animator.SetFloat(AnimationHash.speedHash, value);
         }
     }
 

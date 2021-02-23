@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    //TODO:所有SO通过somanager获取
-    public List<MonsterSpawner_SO> tmp_spawnerDataList;
+    public string[] spawnerNames;
     public List<Transform> spawnPoints;
     private List<MonsterSpawner_SO> spawnerDataList;
 
@@ -13,8 +12,7 @@ public class MonsterSpawner : MonoBehaviour
     {
         InitialData();
     }
-
-    private void Update()
+    private void LateUpdate()
     {
         SpawnMonsters();
     }
@@ -46,9 +44,9 @@ public class MonsterSpawner : MonoBehaviour
     void InitialData()
     {
         spawnerDataList = new List<MonsterSpawner_SO>();
-        foreach (var data in tmp_spawnerDataList)
+        foreach (var name in spawnerNames)
         {
-            var spawn = Instantiate(data);
+            var spawn = Instantiate(SOManager.Instance.spawnDataDic[name]);
             spawnerDataList.Add(spawn);
         }
     }

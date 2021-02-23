@@ -6,21 +6,19 @@ using UnityEngine.AI;
 public class CutTree : SkillBase
 {
     public IDamage target { get; set; }
-    public bool isCutting { get => animator.GetBool(AnimationHash._isCutting); set => animator.SetBool(AnimationHash._isCutting, value); }
-
+    public bool isCutting { get; set; }
     public override void Excute(IDamage target)
     {
         this.target = target;
-        if (skillData.cooldown > 0) return;
         StartCoroutine(Cut());
     }
 
     override protected void Update()
     {
         base.Update();
-        if (skillData.cooldown > 0)
+        if (target != null)
         {
-            isCutting = false;
+            Excute(target);
         }
     }
 
@@ -31,7 +29,6 @@ public class CutTree : SkillBase
     public override void Interrupt()
     {
         target = null;
-        isCutting = false;
         StopAllCoroutines();
     }
     IEnumerator Cut()
@@ -46,7 +43,10 @@ public class CutTree : SkillBase
         }
         agent.destination = transform.position;
         transform.LookAt(target.defender.transform);
-        isCutting = true;
+        if (CheckSkill())
+        {
+            animator.SetTrigger(AnimationHash.cutTree);
+        }
     }
 
     /// <summary>
@@ -54,7 +54,6 @@ public class CutTree : SkillBase
     /// </summary>
     void CutDownTree()
     {
-        skillData.cooldown = tmp_skillData.cooldown;
         target?.defender.transform.LookAt(transform);
         target?.TakingHit();
     }

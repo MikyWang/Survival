@@ -43,7 +43,7 @@ public class Tree : ControllerBase
 
     public override void TakingHit()
     {
-        animator.SetTrigger(AnimationHash._getHit);
+        animator.SetTrigger(AnimationHash.getHit);
     }
 
 }

@@ -6,12 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(Animator), typeof(LiveStats))]
 public abstract class SkillBase : MonoBehaviour
 {
-    public Skill_SO tmp_skillData;
+    public string skillName;
     [HideInInspector]
     public Skill_SO skillData;
-    public float cooldown => skillData.cooldown;
+    public float cooldown => stats.cooldown + skillData.cooldown;
     protected Animator animator;
     protected LiveStats stats;
+    protected Skill_SO tmp_skillData => SOManager.Instance.skillDataDic[skillName];
     protected virtual void Awake()
     {
         skillData = Instantiate(tmp_skillData);
@@ -21,6 +22,17 @@ public abstract class SkillBase : MonoBehaviour
     protected virtual void Update()
     {
         skillData.cooldown -= Time.deltaTime;
+    }
+
+    public virtual bool CheckSkill()
+    {
+        if (cooldown <= 0)
+        {
+            stats.CheckSkill();
+            skillData.cooldown = tmp_skillData.cooldown;
+            return true;
+        }
+        return false;
     }
 
     public virtual void UpgradeSkill()

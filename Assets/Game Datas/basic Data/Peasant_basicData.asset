@@ -18,7 +18,7 @@ MonoBehaviour:
   attack: 1
   defense: 0
   attackSpeed: 2
-  cooldown: 5
+  cooldown: 1
   attackRange: 2
   skillRange: 4
   level: 1

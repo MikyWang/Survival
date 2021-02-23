@@ -17,6 +17,7 @@ public partial class MonsterController : ControllerBase
     private MonsterState state;
     private GameObject target;
     private List<GameObject> patrolPoints => GameManager.Instance.patrolPoints;
+    //TODO:将攻击改为使用技能方式.
     public bool isOnTarget => target == null || Vector3.SqrMagnitude(target.transform.position - transform.position) <= (useSkill ? stats.skillRange : stats.attackRange);
     public bool HasPlayer
     {
@@ -41,8 +42,6 @@ public partial class MonsterController : ControllerBase
     {
         SwitchState();
     }
-
-
     private void SwitchState()
     {
         state = isChasing ? MonsterState.Chase : MonsterState.Patrol;
@@ -90,7 +89,7 @@ public partial class MonsterController : ControllerBase
             isWalking = false;
             if (!isThinking)
             {
-                animator.SetTrigger(AnimationHash._think);
+                animator.SetTrigger(AnimationHash.think);
                 return;
             }
             var index = UnityEngine.Random.Range(0, 7);
@@ -105,12 +104,12 @@ public partial class MonsterController : ControllerBase
         if (stats.CheckSkill())
         {
             useSkill = true;
-            animator.SetTrigger(AnimationHash._attack);
+            animator.SetTrigger(AnimationHash.attack);
             return;
         }
         if (stats.CheckAttack())
         {
-            animator.SetTrigger(AnimationHash._attack);
+            animator.SetTrigger(AnimationHash.attack);
             return;
         }
 
@@ -121,7 +120,7 @@ public partial class MonsterController : ControllerBase
     /// </summary>
     private void HitTarget()
     {
-        target?.GetComponent<ControllerBase>().TakingDamage(stats.attack);
+        target?.GetComponent<IDamage>().TakingDamage(stats.attack);
     }
     public override void Move(Vector3 target)
     {

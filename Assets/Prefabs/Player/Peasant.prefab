@@ -4215,7 +4215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2349236ff41edc54eb718e9c95726d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmp_skillData: {fileID: 11400000, guid: 1e102a21a2f6b5f44b19aa354eedbacd, type: 2}
+  skillName: cutTree
   skillData: {fileID: 0}
 --- !u!114 &-7348501370179836006
 MonoBehaviour:
