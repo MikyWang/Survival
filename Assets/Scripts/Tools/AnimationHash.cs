@@ -11,9 +11,8 @@ public sealed class AnimationHash
     public static readonly int think = Animator.StringToHash("think");
     public static readonly int isChasing = Animator.StringToHash("isChasing");
     public static readonly int attack = Animator.StringToHash("attack");
+    public static readonly int hit = Animator.StringToHash("hit");
     public static readonly int isDefensing = Animator.StringToHash("isDefensing");
     public static readonly int isDizzying = Animator.StringToHash("isDizzying");
     public static readonly int isDead = Animator.StringToHash("isDead");
-    public static readonly int useSkill = Animator.StringToHash("useSkill");
-
 }

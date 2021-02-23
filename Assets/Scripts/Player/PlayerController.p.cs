@@ -9,9 +9,15 @@ public partial class PlayerController
     }
 
     public override bool isHitting { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public override bool isDizzying { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public override bool isDizzying
+    {
+        get => animator.GetBool(AnimationHash.isDizzying);
+        set
+        {
+            animator.SetBool(AnimationHash.isDizzying, value);
+        }
+    }
     public override bool isThinking { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public override bool useSkill { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     public bool isSelected { get; private set; }
 

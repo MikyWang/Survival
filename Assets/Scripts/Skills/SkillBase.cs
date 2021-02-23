@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Animator), typeof(LiveStats))]
 public abstract class SkillBase : MonoBehaviour
@@ -45,6 +46,18 @@ public abstract class SkillBase : MonoBehaviour
         skillData.attack = Mathf.FloorToInt(skillData.attack * 1.5f);
         skillData.range = Mathf.FloorToInt(skillData.range * 1.5f);
     }
+
+    protected IEnumerator MoveToTarget(Transform target)
+    {
+        var agent = GetComponent<NavMeshAgent>();
+        while (Vector3.Distance(transform.position, target.position) > skillDistance)
+        {
+            agent.destination = target.position;
+            yield return null;
+        }
+        agent.destination = transform.position;
+    }
+
     public abstract void Excute(IDamage target);
     public abstract void Excute(Vector3 position);
     public abstract void Interrupt();

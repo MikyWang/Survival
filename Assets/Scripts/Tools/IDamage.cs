@@ -4,11 +4,11 @@ using UnityEngine;
 
 public interface IDamage
 {
-    public GameObject defender { get; }
+    public GameObject self { get; }
     public bool isHitting { get; set; }
     public bool isDizzying { get; set; }
     public void TakingDamage(int damage);
     public void RecoverHP(int point);
-    public void TakingHit();
-    public void TakingDizzy();
+    public void TakingHit(int damage, float time);
+    public IEnumerator TakingDizzy(float time);
 }

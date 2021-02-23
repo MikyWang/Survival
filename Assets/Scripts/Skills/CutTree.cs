@@ -35,14 +35,8 @@ public class CutTree : SkillBase
     {
         if (target == null) yield break;
 
-        var agent = GetComponent<NavMeshAgent>();
-        while (Vector3.Distance(transform.position, target.defender.transform.position) > skillData.distance)
-        {
-            agent.destination = target.defender.transform.position;
-            yield return null;
-        }
-        agent.destination = transform.position;
-        transform.LookAt(target.defender.transform);
+        yield return MoveToTarget(target.self.transform);
+        transform.LookAt(target.self.transform);
         if (CheckSkill())
         {
             animator.SetTrigger(AnimationHash.cutTree);
@@ -54,8 +48,8 @@ public class CutTree : SkillBase
     /// </summary>
     void CutDownTree()
     {
-        target?.defender.transform.LookAt(transform);
-        target?.TakingHit();
+        target?.self.transform.LookAt(transform);
+        target?.TakingHit(0, 0);
     }
 
 }

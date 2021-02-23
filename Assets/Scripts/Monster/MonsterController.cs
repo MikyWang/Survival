@@ -18,6 +18,7 @@ public partial class MonsterController : ControllerBase
     private IDamage target;
     private GameObject patrolTarget;
     private Attack attack;
+    private Hit hit;
     private List<GameObject> patrolPoints => GameManager.Instance.patrolPoints;
     public bool isOnPatrolTarget => patrolTarget == null || Vector3.SqrMagnitude(transform.position - patrolTarget.transform.position) <= agent.stoppingDistance;
     //TODO:将攻击改为使用技能方式.
@@ -40,6 +41,7 @@ public partial class MonsterController : ControllerBase
         agent = GetComponent<NavMeshAgent>();
         stats = GetComponent<LiveStats>();
         attack = GetComponent<Attack>();
+        hit = GetComponent<Hit>();
     }
     private void Update()
     {
@@ -70,7 +72,7 @@ public partial class MonsterController : ControllerBase
             agent.destination = transform.position;
             return;
         }
-        attack.Excute(target);
+        Attack();
     }
 
     private void OnPatrol()
@@ -97,17 +99,19 @@ public partial class MonsterController : ControllerBase
 
     public override void Attack()
     {
-        if (stats.CheckSkill())
-        {
-            useSkill = true;
-            animator.SetTrigger(AnimationHash.attack);
-            return;
-        }
-        if (stats.CheckAttack())
-        {
-            animator.SetTrigger(AnimationHash.attack);
-            return;
-        }
+        hit.Excute(target);
+        //TODO: 设置技能攻击方式
+        // if (stats.CheckSkill())
+        // {
+        //     useSkill = true;
+        //     animator.SetTrigger(AnimationHash.attack);
+        //     return;
+        // }
+        // if (stats.CheckAttack())
+        // {
+        //     animator.SetTrigger(AnimationHash.attack);
+        //     return;
+        // }
 
     }
 
@@ -125,19 +129,19 @@ public partial class MonsterController : ControllerBase
 
     }
 
+    public override IEnumerator TakingDizzy(float time)
+    {
+        yield break;
+    }
+
+    public override void TakingHit(int damage, float time)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void TakingDamage(int damage)
     {
         stats.TakingDamage(damage);
-    }
-
-    public override void TakingDizzy()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void TakingHit()
-    {
-        throw new System.NotImplementedException();
     }
 
     public override void RecoverHP(int point)

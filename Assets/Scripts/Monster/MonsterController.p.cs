@@ -48,11 +48,5 @@ public partial class MonsterController
         set => animator.SetBool(AnimationHash.isDead, value);
     }
 
-    public override bool useSkill
-    {
-        get => animator.GetBool(AnimationHash.useSkill);
-        set => animator.SetBool(AnimationHash.useSkill, value);
-    }
-
 
 }

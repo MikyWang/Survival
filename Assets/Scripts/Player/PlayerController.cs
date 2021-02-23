@@ -77,18 +77,28 @@ public partial class PlayerController : ControllerBase, ISelected
         MouseManager.Instance.OnEnvironmentClicked -= Move;
     }
 
-    public override void TakingHit()
-    {
-        throw new System.NotImplementedException();
-    }
 
-    public override void TakingDizzy()
-    {
-        throw new System.NotImplementedException();
-    }
 
     public override void RecoverHP(int point)
     {
         throw new System.NotImplementedException();
     }
+
+    public override void TakingHit(int damage, float time)
+    {
+        TakingDamage(damage);
+        StartCoroutine(TakingDizzy(time));
+    }
+
+    public override IEnumerator TakingDizzy(float time)
+    {
+        while (time > 0)
+        {
+            isDizzying = true;
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        isDizzying = false;
+    }
+
 }

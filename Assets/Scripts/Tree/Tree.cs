@@ -9,8 +9,6 @@ public class Tree : ControllerBase
     public override bool isHitting { get; set; }
     public override bool isDizzying { get => false; set { } }
     public override bool isThinking { get => false; set { } }
-    public override bool useSkill { get => false; set { } }
-
     protected void Awake()
     {
         animator = GetComponent<Animator>();
@@ -36,12 +34,12 @@ public class Tree : ControllerBase
         throw new System.NotImplementedException();
     }
 
-    public override void TakingDizzy()
+    public override IEnumerator TakingDizzy(float time)
     {
-        throw new System.NotImplementedException();
+        yield break;
     }
 
-    public override void TakingHit()
+    public override void TakingHit(int damage, float time)
     {
         animator.SetTrigger(AnimationHash.getHit);
     }

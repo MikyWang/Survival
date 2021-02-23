@@ -27,14 +27,8 @@ public class Attack : SkillBase
     {
         if (target == null) yield break;
 
-        var agent = GetComponent<NavMeshAgent>();
-        while (Vector3.Distance(transform.position, target.defender.transform.position) > skillDistance)
-        {
-            agent.destination = target.defender.transform.position;
-            yield return null;
-        }
-        agent.destination = transform.position;
-        transform.LookAt(target.defender.transform);
+        yield return MoveToTarget(target.self.transform);
+        transform.LookAt(target.self.transform);
         if (CheckSkill())
         {
             animator.SetTrigger(AnimationHash.attack);
@@ -45,6 +39,6 @@ public class Attack : SkillBase
     /// </summary>
     private void AttackTarget()
     {
-        target?.defender.GetComponent<IDamage>().TakingDamage(stats.attack);
+        target?.self.GetComponent<IDamage>().TakingDamage(stats.attack);
     }
 }

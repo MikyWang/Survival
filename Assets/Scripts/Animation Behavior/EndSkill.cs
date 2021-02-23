@@ -20,7 +20,6 @@ public class EndSkill : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         var controller = animator.GetComponent<ControllerBase>();
-        controller.useSkill = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

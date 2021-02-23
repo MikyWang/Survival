@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum SkillId
 {
-    Attack, CutTree
+    Attack, CutTree, Hit
 }
 public enum SkillType
 {

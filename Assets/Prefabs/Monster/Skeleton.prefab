@@ -2065,6 +2065,7 @@ GameObject:
   - component: {fileID: -761247238880215677}
   - component: {fileID: -5443234903342409954}
   - component: {fileID: 6316862240420137773}
+  - component: {fileID: -5934865819773715116}
   m_Layer: 7
   m_Name: Skeleton
   m_TagString: Untagged
@@ -2184,4 +2185,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: attack
+  skillData: {fileID: 0}
+--- !u!114 &-5934865819773715116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239254853232607504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f94937e6563241839a425916a130a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: hit
   skillData: {fileID: 0}
