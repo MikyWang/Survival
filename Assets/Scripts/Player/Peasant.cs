@@ -49,17 +49,6 @@ public class Peasant : PlayerController
         cutTree.Excute(defender);
     }
 
-    //TODO:修复砍树BUG
-    private IEnumerator CutTreeIntern(IDamage defender)
-    {
-        while (isCutting)
-        {
-            cutTree.Interrupt();
-            yield return new WaitForEndOfFrame();
-        }
-
-    }
-
     public override void Move(Vector3 target)
     {
         cutTree.Interrupt();
