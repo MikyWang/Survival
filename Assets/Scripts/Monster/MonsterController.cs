@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 public enum MonsterState { Patrol, Chase }
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(NavMeshAgent), typeof(Attack), typeof(Hit))]
 public partial class MonsterController : ControllerBase
 {
     public float sightRadius;
@@ -21,7 +21,6 @@ public partial class MonsterController : ControllerBase
     private Hit hit;
     private List<GameObject> patrolPoints => GameManager.Instance.patrolPoints;
     public bool isOnPatrolTarget => patrolTarget == null || Vector3.SqrMagnitude(transform.position - patrolTarget.transform.position) <= agent.stoppingDistance;
-    //TODO:将攻击改为使用技能方式.
     public bool HasPlayer
     {
         get
@@ -99,19 +98,16 @@ public partial class MonsterController : ControllerBase
 
     public override void Attack()
     {
-        hit.Excute(target);
-        //TODO: 设置技能攻击方式
-        // if (stats.CheckSkill())
-        // {
-        //     useSkill = true;
-        //     animator.SetTrigger(AnimationHash.attack);
-        //     return;
-        // }
-        // if (stats.CheckAttack())
-        // {
-        //     animator.SetTrigger(AnimationHash.attack);
-        //     return;
-        // }
+        if (attack.cooldown <= 0)
+        {
+            attack.Excute(target);
+            return;
+        }
+        if (hit.cooldown <= 0)
+        {
+            hit.Excute(target);
+            return;
+        }
 
     }
 

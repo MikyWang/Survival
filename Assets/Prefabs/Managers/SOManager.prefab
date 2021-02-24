@@ -58,3 +58,5 @@ MonoBehaviour:
     so: {fileID: 11400000, guid: 4eb53cd867c38764992709d8ac46cb2f, type: 2}
   - name: cutTree
     so: {fileID: 11400000, guid: 1e102a21a2f6b5f44b19aa354eedbacd, type: 2}
+  - name: hit
+    so: {fileID: 11400000, guid: a69f27e71a4b6460dac8089ff24a7859, type: 2}
