@@ -30,6 +30,7 @@ public class CutTree : SkillBase
     public override void Interrupt()
     {
         target = null;
+        animator.SetTrigger(AnimationHash.endAttack);
         StopAllCoroutines();
     }
     IEnumerator Cut()
@@ -49,8 +50,11 @@ public class CutTree : SkillBase
     /// </summary>
     void CutDownTree()
     {
-        target?.self.transform.LookAt(transform);
-        target?.TakingHit(0, 0);
+        if (target == null) return;
+        if (Vector3.Distance(transform.position, target.self.transform.position) > skillDistance) return;
+
+        target.self.transform.LookAt(transform);
+        target.TakingHit(0, 0);
     }
 
 }

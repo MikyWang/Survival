@@ -44,6 +44,17 @@ public class Peasant : PlayerController
 
     private void CutTree(IDamage defender)
     {
+        StartCoroutine(CutTreeIntern(defender));
+    }
+
+    //TODO:修复砍树BUG
+    private IEnumerator CutTreeIntern(IDamage defender)
+    {
+        while (isCutting)
+        {
+            cutTree.Interrupt();
+            yield return new WaitForEndOfFrame();
+        }
         ChangeWeapon(WeaponType.axe);
         cutTree.Excute(defender);
     }
@@ -53,5 +64,4 @@ public class Peasant : PlayerController
         cutTree.Interrupt();
         base.Move(target);
     }
-
 }
