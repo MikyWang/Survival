@@ -37,7 +37,10 @@ public class CutTree : SkillBase
     {
         if (target == null) yield break;
 
-        yield return MoveToTarget(target.self.transform);
+        yield return MoveToTarget(target.self.transform, () =>
+        {
+            animator.SetTrigger(AnimationHash.endAttack);
+        });
         transform.LookAt(target.self.transform);
         if (CheckSkill())
         {

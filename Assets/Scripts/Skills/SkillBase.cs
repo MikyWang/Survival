@@ -47,12 +47,13 @@ public abstract class SkillBase : MonoBehaviour
         skillData.range = Mathf.FloorToInt(skillData.range * 1.5f);
     }
 
-    protected IEnumerator MoveToTarget(Transform target)
+    protected IEnumerator MoveToTarget(Transform target, Action OnRoad = null)
     {
         var agent = GetComponent<NavMeshAgent>();
         while (Vector3.Distance(transform.position, target.position) > skillDistance)
         {
             agent.destination = target.position;
+            OnRoad?.Invoke();
             yield return null;
         }
         agent.destination = transform.position;

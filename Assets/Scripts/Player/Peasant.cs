@@ -44,7 +44,9 @@ public class Peasant : PlayerController
 
     private void CutTree(IDamage defender)
     {
-        StartCoroutine(CutTreeIntern(defender));
+        cutTree.Interrupt();
+        ChangeWeapon(WeaponType.axe);
+        cutTree.Excute(defender);
     }
 
     //TODO:修复砍树BUG
@@ -55,8 +57,7 @@ public class Peasant : PlayerController
             cutTree.Interrupt();
             yield return new WaitForEndOfFrame();
         }
-        ChangeWeapon(WeaponType.axe);
-        cutTree.Excute(defender);
+
     }
 
     public override void Move(Vector3 target)
