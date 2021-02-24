@@ -2170,7 +2170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd8023484b5b7bf46987e02c0da03bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soName: skeleton
+  id: 1
   liveData: {fileID: 0}
 --- !u!114 &6316862240420137773
 MonoBehaviour:
@@ -2184,7 +2184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5da8c5cd23a47318808d75d84351f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: attack
   skillData: {fileID: 0}
 --- !u!114 &-5934865819773715116
 MonoBehaviour:
@@ -2198,5 +2197,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f94937e6563241839a425916a130a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: hit
   skillData: {fileID: 0}

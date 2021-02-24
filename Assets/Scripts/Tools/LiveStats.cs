@@ -5,10 +5,10 @@ using UnityEngine.Assertions;
 
 public partial class LiveStats : MonoBehaviour
 {
-    public string soName;
+    public LiveId id;
     [HideInInspector]
     public Live_SO liveData;
-    private Live_SO tmp_LiveData => SOManager.Instance.basicDataDic[soName];
+    private Live_SO tmp_LiveData => SOManager.Instance.basicDataDic[id];
 
     private void Start()
     {
@@ -43,7 +43,6 @@ public partial class LiveStats : MonoBehaviour
             return true;
         }
         return false;
-
     }
 
 }

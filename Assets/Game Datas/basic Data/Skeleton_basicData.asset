@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f27b193df4839449116708392916f2, type: 3}
   m_Name: Skeleton_basicData
   m_EditorClassIdentifier: 
+  id: 1
   liveName: "\u5C0F\u9AB7\u9AC5"
   health: 20
   maxHealth: 20

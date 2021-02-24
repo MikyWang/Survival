@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public string[] spawnerNames;
+    public MonsterId[] spawnerIds;
     public List<Transform> spawnPoints;
     private List<MonsterSpawner_SO> spawnerDataList;
 
@@ -44,9 +44,9 @@ public class MonsterSpawner : MonoBehaviour
     void InitialData()
     {
         spawnerDataList = new List<MonsterSpawner_SO>();
-        foreach (var name in spawnerNames)
+        foreach (var id in spawnerIds)
         {
-            var spawn = Instantiate(SOManager.Instance.spawnDataDic[name]);
+            var spawn = Instantiate(SOManager.Instance.spawnDataDic[id]);
             spawnerDataList.Add(spawn);
         }
     }

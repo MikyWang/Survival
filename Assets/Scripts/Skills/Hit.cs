@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Hit : SkillBase
 {
     public IDamage target { get; set; }
+    public override SkillId id => SkillId.Hit;
     public override void Excute(IDamage target)
     {
         this.target = target;

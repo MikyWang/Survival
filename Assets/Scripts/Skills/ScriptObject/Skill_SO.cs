@@ -2,14 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SkillId
-{
-    Attack, CutTree, Hit
-}
-public enum SkillType
-{
-    Self, Enemy, Partner
-}
 [CreateAssetMenu(fileName = "_skillData", menuName = "数据/新建技能")]
 public class Skill_SO : ScriptableObject
 {

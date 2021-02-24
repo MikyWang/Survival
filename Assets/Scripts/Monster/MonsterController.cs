@@ -5,8 +5,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum MonsterState { Patrol, Chase }
-
 [RequireComponent(typeof(NavMeshAgent), typeof(Attack), typeof(Hit))]
 public partial class MonsterController : ControllerBase
 {
@@ -68,6 +66,7 @@ public partial class MonsterController : ControllerBase
             isChasing = false;
             target = null;
             attack.Interrupt();
+            hit.Interrupt();
             agent.destination = transform.position;
             return;
         }
@@ -79,6 +78,7 @@ public partial class MonsterController : ControllerBase
         if (HasPlayer)
         {
             isChasing = true;
+            patrolTarget = null;
             return;
         }
         if (isOnPatrolTarget)
@@ -98,17 +98,8 @@ public partial class MonsterController : ControllerBase
 
     public override void Attack()
     {
-        if (attack.cooldown <= 0)
-        {
-            attack.Excute(target);
-            return;
-        }
-        if (hit.cooldown <= 0)
-        {
-            hit.Excute(target);
-            return;
-        }
-
+        attack.Excute(target);
+        hit.Excute(target);
     }
 
     /// <summary>

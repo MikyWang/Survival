@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "_basicData", menuName = "数据/创建新基本数据")]
 public class Live_SO : ScriptableObject
 {
+    public LiveId id;
     public string liveName; //生物名字
     public int health; //当前血量
     public int maxHealth; //最大血量

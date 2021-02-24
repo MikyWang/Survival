@@ -7,6 +7,7 @@ public class CutTree : SkillBase
 {
     public IDamage target { get; set; }
     public bool isCutting { get; set; }
+    public override SkillId id => SkillId.CutTree;
     public override void Excute(IDamage target)
     {
         this.target = target;
