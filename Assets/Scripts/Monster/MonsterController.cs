@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent), typeof(Attack), typeof(Hit))]
+[RequireComponent(typeof(NavMeshAgent))]
 public partial class MonsterController : ControllerBase
 {
     public float sightRadius;
@@ -15,8 +15,8 @@ public partial class MonsterController : ControllerBase
     private MonsterState state;
     private IDamage target;
     private GameObject patrolTarget;
-    private Attack attack;
-    private Hit hit;
+    public Attack attack => skills[SkillId.Attack] as Attack;
+    public Hit hit => skills[SkillId.Hit] as Hit;
     private List<GameObject> patrolPoints => GameManager.Instance.patrolPoints;
     public bool isOnPatrolTarget => patrolTarget == null || Vector3.SqrMagnitude(transform.position - patrolTarget.transform.position) <= agent.stoppingDistance;
     public bool HasPlayer
@@ -32,13 +32,11 @@ public partial class MonsterController : ControllerBase
             return col != default(Collider);
         }
     }
-    private void Awake()
+    protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         stats = GetComponent<LiveStats>();
-        attack = GetComponent<Attack>();
-        hit = GetComponent<Hit>();
     }
     private void Update()
     {

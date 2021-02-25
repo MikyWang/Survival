@@ -4140,7 +4140,6 @@ GameObject:
   - component: {fileID: 1805440008535530578}
   - component: {fileID: 1272219442243592701}
   - component: {fileID: 2580138785705724595}
-  - component: {fileID: -6017337042529684692}
   - component: {fileID: -7348501370179836006}
   m_Layer: 7
   m_Name: Peasant
@@ -4234,19 +4233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   liveData: {fileID: 0}
---- !u!114 &-6017337042529684692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8745149097722261789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2349236ff41edc54eb718e9c95726d7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillData: {fileID: 0}
 --- !u!114 &-7348501370179836006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4263,7 +4249,7 @@ MonoBehaviour:
   - {fileID: 8745149097722479127}
   - {fileID: 8745149097722268317}
   - {fileID: 8745149097722314623}
-  healthBarPrefab: {fileID: 2435114361825188922, guid: 6e46ffc6e1d664b6ea12085d0c56480a, type: 3}
+  skillIds: 01000000
 --- !u!1 &8745149097722261813
 GameObject:
   m_ObjectHideFlags: 0

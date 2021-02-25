@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Hit_skillData
   m_EditorClassIdentifier: 
   skillId: 2
+  skillComp: {fileID: 11500000, guid: 5f94937e6563241839a425916a130a4d, type: 3}
   skillType: 1
   skillName: "\u91CD\u51FB"
   cooldown: 3

@@ -21,9 +21,11 @@ public partial class PlayerController : ControllerBase, ISelected
         speed = agent.velocity.sqrMagnitude;
         GameManager.Instance.UpdatePlayersInView(this);
     }
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         GameManager.Instance.ToggleSelector(this);
+        HealthBarManager.Instance.RegisterController(this);
     }
 
     private void OnDestroy()

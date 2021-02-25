@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "_skillData", menuName = "数据/新建技能")]
 public class Skill_SO : ScriptableObject
 {
     public SkillId skillId;
+    public MonoScript skillComp;
     public SkillType skillType;
     public string skillName;
     public float cooldown;

@@ -9,14 +9,7 @@ public class Peasant : PlayerController
         axe, hammer, pick
     }
     public GameObject[] weapons;
-    private CutTree cutTree;
-    public bool isCutting => cutTree.isCutting;
-    protected override void Awake()
-    {
-        base.Awake();
-        cutTree = GetComponent<CutTree>();
-    }
-
+    public CutTree cutTree => skills[SkillId.CutTree] as CutTree;
     public override void Select(GameObject highlightingPrefab)
     {
         base.Select(highlightingPrefab);

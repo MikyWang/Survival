@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc7c292ad155d046a1099e7208b9396, type: 3}
   m_Name: CutTree_skillData
   m_EditorClassIdentifier: 
-  skillId: 0
+  skillId: 1
+  skillComp: {fileID: 11500000, guid: 2349236ff41edc54eb718e9c95726d7f, type: 3}
   skillType: 1
   skillName: "\u780D\u6811"
   cooldown: 1

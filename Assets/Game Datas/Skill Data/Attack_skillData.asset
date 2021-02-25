@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Attack_skillData
   m_EditorClassIdentifier: 
   skillId: 0
+  skillComp: {fileID: 11500000, guid: 8d5da8c5cd23a47318808d75d84351f7, type: 3}
   skillType: 1
   skillName: "\u666E\u901A\u653B\u51FB"
   cooldown: 2

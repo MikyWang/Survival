@@ -2064,8 +2064,6 @@ GameObject:
   - component: {fileID: -8315841174994784643}
   - component: {fileID: -761247238880215677}
   - component: {fileID: -5443234903342409954}
-  - component: {fileID: 6316862240420137773}
-  - component: {fileID: -5934865819773715116}
   m_Layer: 7
   m_Name: Skeleton
   m_TagString: Untagged
@@ -2157,6 +2155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffcdce09bd89ac499bd9339e729e15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillIds: 0000000002000000
   sightRadius: 8
 --- !u!114 &-5443234903342409954
 MonoBehaviour:
@@ -2172,29 +2171,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   liveData: {fileID: 0}
---- !u!114 &6316862240420137773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7239254853232607504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d5da8c5cd23a47318808d75d84351f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillData: {fileID: 0}
---- !u!114 &-5934865819773715116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7239254853232607504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f94937e6563241839a425916a130a4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillData: {fileID: 0}
