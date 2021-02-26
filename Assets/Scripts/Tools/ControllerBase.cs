@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class ControllerBase : MonoBehaviour, IDamage
 {
+    public Transform headUITransform;
     public SkillId[] skillIds;
     public abstract float speed { get; set; }
     public abstract bool isHitting { get; set; }

@@ -15,14 +15,15 @@ public class HealthBarManager : Singleton<HealthBarManager>
             var hashId = live.gameObject.GetInstanceID();
             if (live.transform.IsInView())
             {
-                var pos = live.transform.GetChild(2).position;
+                var pos = live.headUITransform.position;
                 if (!liveHealthBars.ContainsKey(hashId))
                 {
                     var health = Instantiate(healthBarPrefab, transform);
                     liveHealthBars.Add(hashId, health);
                 }
                 liveHealthBars[hashId].transform.position = pos;
-                liveHealthBars[hashId].transform.rotation = Camera.main.transform.rotation;
+                // liveHealthBars[hashId].transform.rotation = Camera.main.transform.rotation;
+                liveHealthBars[hashId].transform.forward = Camera.main.transform.forward;
                 liveHealthBars[hashId].SetActive(true);
             }
             else
