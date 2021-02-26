@@ -6,6 +6,7 @@ public abstract class ControllerBase : MonoBehaviour, IDamage
 {
     public Transform headUITransform;
     public SkillId[] skillIds;
+    public LiveStats stats { get; protected set; }
     public abstract float speed { get; set; }
     public abstract bool isHitting { get; set; }
     public abstract bool isDizzying { get; set; }
@@ -18,9 +19,18 @@ public abstract class ControllerBase : MonoBehaviour, IDamage
     public abstract IEnumerator TakingDizzy(float time);
     public abstract void RecoverHP(int point);
     public Dictionary<SkillId, SkillBase> skills;
+
+    protected virtual void Awake()
+    {
+        stats = GetComponent<LiveStats>();
+    }
     protected virtual void Start()
     {
         InitSkills();
+        if (headUITransform != null)
+        {
+            HealthBarManager.Instance.RegisterController(this);
+        }
     }
 
     public virtual void InitSkills()
@@ -33,6 +43,7 @@ public abstract class ControllerBase : MonoBehaviour, IDamage
             skills.Add(skillId, skill as SkillBase);
         }
     }
+
 }
 
 

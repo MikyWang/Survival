@@ -8,12 +8,11 @@ public partial class PlayerController : ControllerBase, ISelected
 {
     protected NavMeshAgent agent;
     protected Animator animator;
-    protected LiveStats stats;
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        stats = GetComponent<LiveStats>();
     }
 
     private void Update()
@@ -25,7 +24,6 @@ public partial class PlayerController : ControllerBase, ISelected
     {
         base.Start();
         GameManager.Instance.ToggleSelector(this);
-        HealthBarManager.Instance.RegisterController(this);
     }
 
     private void OnDestroy()

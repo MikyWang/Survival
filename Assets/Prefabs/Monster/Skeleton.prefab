@@ -2086,6 +2086,7 @@ Transform:
   - {fileID: 7234117564100000330}
   - {fileID: 7240502747610409150}
   - {fileID: 7240652293090113306}
+  - {fileID: 7746152473238767593}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2155,7 +2156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffcdce09bd89ac499bd9339e729e15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  headUITransform: {fileID: 7746152473238767593}
   skillIds: 0000000002000000
+  stats: {fileID: 0}
   sightRadius: 8
 --- !u!114 &-5443234903342409954
 MonoBehaviour:
@@ -2171,3 +2174,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   liveData: {fileID: 0}
+--- !u!1 &7368888751942077757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7746152473238767593}
+  m_Layer: 7
+  m_Name: HeadUI Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7746152473238767593
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7368888751942077757}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7240481060646654874}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

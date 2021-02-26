@@ -11,7 +11,6 @@ public partial class MonsterController : ControllerBase
     public float sightRadius;
     private Animator animator;
     private NavMeshAgent agent;
-    private LiveStats stats;
     private MonsterState state;
     private IDamage target;
     private GameObject patrolTarget;
@@ -32,11 +31,11 @@ public partial class MonsterController : ControllerBase
             return col != default(Collider);
         }
     }
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        stats = GetComponent<LiveStats>();
     }
     private void Update()
     {

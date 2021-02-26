@@ -9,7 +9,6 @@ public partial class LiveStats : MonoBehaviour
     [HideInInspector]
     public Live_SO liveData;
     private Live_SO tmp_LiveData => SOManager.Instance.basicDataDic[id];
-
     private void Start()
     {
         liveData = Instantiate(tmp_LiveData);

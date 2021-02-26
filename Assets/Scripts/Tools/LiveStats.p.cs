@@ -9,4 +9,9 @@ public partial class LiveStats
     public int defense => liveData.defense;
     public float attackSpeed => liveData.attackSpeed;
     public float cooldown => liveData.cooldown;
+    public int health => liveData.health;
+    public int maxHealth => liveData.maxHealth;
+    public int level => liveData.level;
+    public int levelPoint => liveData.levelPoint;
+    public int maxLevelPoint => liveData.maxLevelPoint;
 }

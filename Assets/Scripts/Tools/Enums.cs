@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum LiveId
 {
-    Peasant, Skeleton, Bat
+    Peasant, Skeleton, Bat, Tree
 }
 public enum SkillId
 {

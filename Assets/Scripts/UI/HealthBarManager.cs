@@ -15,16 +15,13 @@ public class HealthBarManager : Singleton<HealthBarManager>
             var hashId = live.gameObject.GetInstanceID();
             if (live.transform.IsInView())
             {
-                var pos = live.headUITransform.position;
                 if (!liveHealthBars.ContainsKey(hashId))
                 {
                     var health = Instantiate(healthBarPrefab, transform);
                     liveHealthBars.Add(hashId, health);
                 }
-                liveHealthBars[hashId].transform.position = pos;
-                // liveHealthBars[hashId].transform.rotation = Camera.main.transform.rotation;
-                liveHealthBars[hashId].transform.forward = Camera.main.transform.forward;
                 liveHealthBars[hashId].SetActive(true);
+                liveHealthBars[hashId].GetComponent<HealthBar>().UpdateBarUI(live);
             }
             else
             {
@@ -38,7 +35,18 @@ public class HealthBarManager : Singleton<HealthBarManager>
 
     public void RegisterController(ControllerBase controller)
     {
+        if (lives.Contains(controller)) return;
         lives.Add(controller);
+    }
+    public void UnregisterController(ControllerBase controller)
+    {
+        if (!lives.Contains(controller)) return;
+        var hashId = controller.gameObject.GetInstanceID();
+        lives.Remove(controller);
+        if (liveHealthBars.ContainsKey(hashId))
+        {
+            liveHealthBars[hashId].SetActive(false);
+        }
     }
 
 }
