@@ -31,12 +31,14 @@ public class TreeController : ControllerBase
         throw new System.NotImplementedException();
     }
 
-    public override void TakingDamage(int damage)
+    public override void TakingDamage(ControllerBase attacker, int damage)
     {
         stats.TakingDamage(damage);
         animator.SetInteger(AnimationHash.health, stats.health);
         if (stats.isDead)
         {
+            (attacker as Peasant)?.AddWood();
+            attacker.stats.UpdateLevelExp(stats.deadPoint);
             StartCoroutine(Death());
         }
     }
@@ -46,12 +48,12 @@ public class TreeController : ControllerBase
         yield break;
     }
 
-    public override void TakingHit(int damage, float time)
+    public override void TakingHit(ControllerBase attacker, int damage, float time)
     {
         StopAllCoroutines();
         HealthBarManager.Instance.RegisterController(this);
         animator.SetTrigger(AnimationHash.getHit);
-        TakingDamage(damage);
+        TakingDamage(attacker, damage);
         StartCoroutine(HideHealth(5));
     }
 

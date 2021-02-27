@@ -40,6 +40,6 @@ public class Attack : SkillBase
     /// </summary>
     private void AttackTarget()
     {
-        target?.self.GetComponent<IDamage>().TakingDamage(stats.attack);
+        target?.self.GetComponent<IDamage>().TakingDamage(controller, stats.attack);
     }
 }

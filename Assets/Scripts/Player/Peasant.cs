@@ -6,16 +6,20 @@ public class Peasant : PlayerController
 {
     public enum WeaponType
     {
-        axe, hammer, pick
+        Axe, Hammer, Pick
+    }
+    public enum PackageType
+    {
+        Wood, Bag, Package, None
     }
     public GameObject[] weapons;
+    public GameObject[] packages;
     public CutTree cutTree => skills[SkillId.CutTree] as CutTree;
     public override void Select(GameObject highlightingPrefab)
     {
         base.Select(highlightingPrefab);
         MouseManager.Instance.OnTreeClicked += CutTree;
     }
-
     public override void UnSelect()
     {
         base.UnSelect();
@@ -34,11 +38,28 @@ public class Peasant : PlayerController
             weapons[i].SetActive(false);
         }
     }
+    private void ShowPackage(PackageType packageType)
+    {
+        for (int i = 0; i < packages.Length; i++)
+        {
+            if (packageType != PackageType.None && (int)packageType == i)
+            {
+                packages[i].SetActive(true);
+                continue;
+            }
+            packages[i].SetActive(false);
+        }
+    }
 
+    public void AddWood()
+    {
+        cutTree.canUse = false;
+        ShowPackage(PackageType.Wood);
+    }
     private void CutTree(IDamage defender)
     {
         cutTree.Interrupt();
-        ChangeWeapon(WeaponType.axe);
+        ChangeWeapon(WeaponType.Axe);
         cutTree.Excute(defender);
     }
 

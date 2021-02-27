@@ -13,14 +13,17 @@ public abstract class SkillBase : MonoBehaviour
     public float cooldown => stats.cooldown + skillData.cooldown;
     public float skillDistance => stats.attackRange + skillData.distance;
     public int damage => stats.attack + skillData.attack;
+    public bool canUse { get; set; } = true;
     protected Animator animator;
     protected LiveStats stats;
+    protected ControllerBase controller;
     protected Skill_SO tmp_skillData => SOManager.Instance.skillDataDic[id];
     protected virtual void Awake()
     {
         skillData = Instantiate(tmp_skillData);
         animator = GetComponent<Animator>();
         stats = GetComponent<LiveStats>();
+        controller = GetComponent<ControllerBase>();
         skillData.cooldown = 0;
     }
     protected virtual void Update()
@@ -30,7 +33,7 @@ public abstract class SkillBase : MonoBehaviour
 
     public virtual bool CheckSkill()
     {
-        if (cooldown <= 0)
+        if (cooldown <= 0 && canUse)
         {
             stats.CheckSkill();
             skillData.cooldown = tmp_skillData.cooldown;

@@ -8,8 +8,8 @@ public interface IDamage
     public bool isHitting { get; set; }
     public bool isDizzying { get; set; }
     public bool isDead { get; }
-    public void TakingDamage(int damage);
+    public void TakingDamage(ControllerBase attacker, int damage);
     public void RecoverHP(int point);
-    public void TakingHit(int damage, float time);
+    public void TakingHit(ControllerBase attacker, int damage, float time);
     public IEnumerator TakingDizzy(float time);
 }

@@ -18,7 +18,6 @@ MonoBehaviour:
   maxHealth: 5
   attack: 0
   defense: 0
-  attackSpeed: 0
   cooldown: 0
   attackRange: 0
   level: 0
@@ -27,5 +26,5 @@ MonoBehaviour:
   growthAttackPoint: 0
   growthHealthPoint: 0
   growthDefensePoint: 0
-  deadPoint: 0
+  deadPoint: 30
   description: "\u6728\u6750\u7684\u6765\u6E90\uFF01\n+5\u6728\u6750"

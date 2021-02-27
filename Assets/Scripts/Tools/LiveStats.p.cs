@@ -7,7 +7,6 @@ public partial class LiveStats
     public int attack => liveData.attack;
     public int attackRange => liveData.attackRange;
     public int defense => liveData.defense;
-    public float attackSpeed => liveData.attackSpeed;
     public float cooldown => liveData.cooldown;
     public int health => liveData.health;
     public int maxHealth => liveData.maxHealth;
@@ -15,4 +14,5 @@ public partial class LiveStats
     public int levelPoint => liveData.levelPoint;
     public int maxLevelPoint => liveData.maxLevelPoint;
     public bool isDead => health <= 0;
+    public int deadPoint => liveData.deadPoint;
 }

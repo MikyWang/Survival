@@ -11,9 +11,8 @@ public class Live_SO : ScriptableObject
     public int maxHealth; //最大血量
     public int attack; //基础攻击力
     public int defense; //基础防御力
-    public float attackSpeed; //攻击速度
-    public float cooldown; //技能冷却时间
-    public int attackRange;//攻击距离
+    public float cooldown; //基础技能冷却时间
+    public int attackRange;//基础攻击距离
     public int level; //等级
     public int levelPoint; //经验值
     public int maxLevelPoint; //最大经验值

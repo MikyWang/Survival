@@ -16,8 +16,8 @@ public abstract class ControllerBase : MonoBehaviour, IDamage
     public bool isDead => stats.isDead;
     public abstract void Move(Vector3 target);
     public abstract void Attack();
-    public abstract void TakingDamage(int damage);
-    public abstract void TakingHit(int damage, float time);
+    public abstract void TakingDamage(ControllerBase attacker, int damage);
+    public abstract void TakingHit(ControllerBase attacker, int damage, float time);
     public abstract IEnumerator TakingDizzy(float time);
     public abstract void RecoverHP(int point);
     public Dictionary<SkillId, SkillBase> skills;
@@ -53,6 +53,8 @@ public abstract class ControllerBase : MonoBehaviour, IDamage
             skills.Add(skillId, skill as SkillBase);
         }
     }
+
+
 }
 
 

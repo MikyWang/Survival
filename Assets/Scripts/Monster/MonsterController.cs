@@ -105,7 +105,7 @@ public partial class MonsterController : ControllerBase
     /// </summary>
     private void HitTarget()
     {
-        target.TakingDamage(stats.attack);
+        target.TakingDamage(this, stats.attack);
     }
     public override void Move(Vector3 target)
     {
@@ -118,12 +118,12 @@ public partial class MonsterController : ControllerBase
         yield break;
     }
 
-    public override void TakingHit(int damage, float time)
+    public override void TakingHit(ControllerBase attacker, int damage, float time)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void TakingDamage(int damage)
+    public override void TakingDamage(ControllerBase attacker, int damage)
     {
         stats.TakingDamage(damage);
     }

@@ -49,9 +49,9 @@ public class CutTree : SkillBase
         {
             animator.SetTrigger(AnimationHash.endAttack);
         });
-        transform.LookAt(target.self.transform);
         if (CheckSkill())
         {
+            transform.LookAt(target.self.transform);
             animator.SetTrigger(AnimationHash.cutTree);
         }
     }
@@ -65,7 +65,7 @@ public class CutTree : SkillBase
         if (Vector3.Distance(transform.position, target.self.transform.position) > skillDistance) return;
 
         target.self.transform.LookAt(transform);
-        target.TakingHit(damage, 0);
+        target.TakingHit(controller, damage, 0);
     }
 
 }

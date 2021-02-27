@@ -17,7 +17,6 @@ public partial class LiveStats : MonoBehaviour
     private void Update()
     {
         liveData.cooldown -= Time.deltaTime;
-        liveData.attackSpeed -= Time.deltaTime;
     }
 
     public void TakingDamage(int damage)
@@ -35,14 +34,19 @@ public partial class LiveStats : MonoBehaviour
         }
         return false;
     }
-    public bool CheckAttack()
-    {
-        if (attackSpeed <= 0)
-        {
-            liveData.attackSpeed = tmp_LiveData.attackSpeed;
-            return true;
-        }
-        return false;
-    }
 
+    public void UpdateLevelExp(int point)
+    {
+        liveData.levelPoint += point;
+        if (liveData.levelPoint >= liveData.maxLevelPoint)
+        {
+            liveData.level += 1;
+            liveData.levelPoint -= liveData.maxLevelPoint;
+            liveData.maxLevelPoint *= 2;
+            liveData.attack += liveData.growthAttackPoint;
+            liveData.maxHealth += liveData.growthHealthPoint;
+            liveData.defense += liveData.growthDefensePoint;
+            liveData.health = maxHealth;
+        }
+    }
 }

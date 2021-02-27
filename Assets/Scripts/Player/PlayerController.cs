@@ -45,7 +45,7 @@ public partial class PlayerController : ControllerBase, ISelected
         agent.destination = target;
     }
 
-    public override void TakingDamage(int damage)
+    public override void TakingDamage(ControllerBase attacker, int damage)
     {
         stats.TakingDamage(damage);
         if (stats.liveData.health <= 0)
@@ -85,9 +85,9 @@ public partial class PlayerController : ControllerBase, ISelected
         throw new System.NotImplementedException();
     }
 
-    public override void TakingHit(int damage, float time)
+    public override void TakingHit(ControllerBase attacker, int damage, float time)
     {
-        TakingDamage(damage);
+        TakingDamage(attacker, damage);
         StartCoroutine(TakingDizzy(time));
     }
 
