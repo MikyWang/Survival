@@ -57,7 +57,7 @@ public class CutTree : SkillBase
         if (Vector3.Distance(transform.position, target.self.transform.position) > skillDistance) return;
 
         target.self.transform.LookAt(transform);
-        target.TakingHit(0, 0);
+        target.TakingHit(damage, 0);
     }
 
 }

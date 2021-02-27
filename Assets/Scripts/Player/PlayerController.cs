@@ -44,6 +44,11 @@ public partial class PlayerController : ControllerBase, ISelected
         agent.destination = target;
     }
 
+    public override void OnDeathAnimEnd()
+    {
+
+    }
+
     public override void TakingDamage(int damage)
     {
         stats.TakingDamage(damage);

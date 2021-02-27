@@ -12,6 +12,7 @@ public abstract class SkillBase : MonoBehaviour
     public Skill_SO skillData;
     public float cooldown => stats.cooldown + skillData.cooldown;
     public float skillDistance => stats.attackRange + skillData.distance;
+    public int damage => stats.attack + skillData.attack;
     protected Animator animator;
     protected LiveStats stats;
     protected Skill_SO tmp_skillData => SOManager.Instance.skillDataDic[id];

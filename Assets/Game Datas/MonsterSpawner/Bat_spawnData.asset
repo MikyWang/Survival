@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d3a92f786b6d564894831f5016bca1f, type: 3}
   m_Name: Bat_spawnData
   m_EditorClassIdentifier: 
+  id: 0
   monsterPrefab: {fileID: 1411682786832475109, guid: af8da034e410df3459d6b769fc3ee238, type: 3}
-  remainingTime: 0
+  remainingTime: 120
   period: 60
   count: 5

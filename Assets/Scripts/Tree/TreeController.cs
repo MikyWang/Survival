@@ -32,7 +32,8 @@ public class TreeController : ControllerBase
 
     public override void TakingDamage(int damage)
     {
-        throw new System.NotImplementedException();
+        //TODO:需增加死亡处理
+        stats.TakingDamage(damage);
     }
 
     public override IEnumerator TakingDizzy(float time)
@@ -45,6 +46,7 @@ public class TreeController : ControllerBase
         StopAllCoroutines();
         HealthBarManager.Instance.RegisterController(this);
         animator.SetTrigger(AnimationHash.getHit);
+        TakingDamage(damage);
         StartCoroutine(HideHealth(5));
     }
 
@@ -59,4 +61,8 @@ public class TreeController : ControllerBase
         HealthBarManager.Instance.UnregisterController(this);
     }
 
+    public override void OnDeathAnimEnd()
+    {
+        Destroy(gameObject);
+    }
 }

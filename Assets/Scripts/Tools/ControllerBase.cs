@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,10 @@ public abstract class ControllerBase : MonoBehaviour, IDamage
     public abstract void TakingDamage(int damage);
     public abstract void TakingHit(int damage, float time);
     public abstract IEnumerator TakingDizzy(float time);
+    /// <summary>
+    /// 死亡动画结束时触发
+    /// </summary>
+    public abstract void OnDeathAnimEnd();
     public abstract void RecoverHP(int point);
     public Dictionary<SkillId, SkillBase> skills;
 
@@ -38,8 +43,9 @@ public abstract class ControllerBase : MonoBehaviour, IDamage
         skills = new Dictionary<SkillId, SkillBase>();
         foreach (var skillId in skillIds)
         {
-            var skillComp = SOManager.Instance.skillDataDic[skillId].skillComp.GetClass();
+            var skillComp = Type.GetType(skillId.ToString());
             var skill = gameObject.AddComponent(skillComp);
+
             skills.Add(skillId, skill as SkillBase);
         }
     }

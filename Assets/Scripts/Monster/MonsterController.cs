@@ -112,6 +112,10 @@ public partial class MonsterController : ControllerBase
         isWalking = true;
 
     }
+    public override void OnDeathAnimEnd()
+    {
+
+    }
 
     public override IEnumerator TakingDizzy(float time)
     {

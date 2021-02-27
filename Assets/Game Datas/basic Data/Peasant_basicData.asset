@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f27b193df4839449116708392916f2, type: 3}
   m_Name: Peasant_basicData
   m_EditorClassIdentifier: 
+  id: 0
   liveName: "\u751F\u8FD8\u8005"
   health: 100
   maxHealth: 100
-  attack: 1
+  attack: 0
   defense: 0
   attackSpeed: 2
   cooldown: 1
   attackRange: 2
-  skillRange: 4
   level: 1
   levelPoint: 0
-  maxLevelPoint: 100
-  growthAttackPoint: 1
+  maxLevelPoint: 50
+  growthAttackPoint: 0
   growthHealthPoint: 5
   growthDefensePoint: 1
   deadPoint: 10
