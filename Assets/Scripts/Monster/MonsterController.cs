@@ -37,8 +37,9 @@ public partial class MonsterController : ControllerBase
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         speed = agent.velocity.sqrMagnitude;
         SwitchState();
     }
@@ -112,11 +113,6 @@ public partial class MonsterController : ControllerBase
         isWalking = true;
 
     }
-    public override void OnDeathAnimEnd()
-    {
-
-    }
-
     public override IEnumerator TakingDizzy(float time)
     {
         yield break;

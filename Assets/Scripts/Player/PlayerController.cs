@@ -15,8 +15,9 @@ public partial class PlayerController : ControllerBase, ISelected
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         speed = agent.velocity.sqrMagnitude;
         GameManager.Instance.UpdatePlayersInView(this);
     }
@@ -42,11 +43,6 @@ public partial class PlayerController : ControllerBase, ISelected
     public override void Move(Vector3 target)
     {
         agent.destination = target;
-    }
-
-    public override void OnDeathAnimEnd()
-    {
-
     }
 
     public override void TakingDamage(int damage)

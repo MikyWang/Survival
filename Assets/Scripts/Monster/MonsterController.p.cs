@@ -42,11 +42,4 @@ public partial class MonsterController
         }
 
     }
-    public bool isDead
-    {
-        get => animator.GetBool(AnimationHash.isDead);
-        set => animator.SetBool(AnimationHash.isDead, value);
-    }
-
-
 }

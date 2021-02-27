@@ -9,6 +9,7 @@ public class TreeController : ControllerBase
     public override bool isHitting { get; set; }
     public override bool isDizzying { get => false; set { } }
     public override bool isThinking { get => false; set { } }
+
     protected override void Awake()
     {
         base.Awake();
@@ -32,8 +33,12 @@ public class TreeController : ControllerBase
 
     public override void TakingDamage(int damage)
     {
-        //TODO:需增加死亡处理
         stats.TakingDamage(damage);
+        animator.SetInteger(AnimationHash.health, stats.health);
+        if (stats.isDead)
+        {
+            StartCoroutine(Death());
+        }
     }
 
     public override IEnumerator TakingDizzy(float time)
@@ -61,8 +66,11 @@ public class TreeController : ControllerBase
         HealthBarManager.Instance.UnregisterController(this);
     }
 
-    public override void OnDeathAnimEnd()
+    IEnumerator Death()
     {
+        yield return new WaitForSeconds(1f);
+        HealthBarManager.Instance.UnregisterController(this);
         Destroy(gameObject);
     }
+
 }

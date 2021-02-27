@@ -13,15 +13,12 @@ public abstract class ControllerBase : MonoBehaviour, IDamage
     public abstract bool isDizzying { get; set; }
     public abstract bool isThinking { get; set; }
     public GameObject self => gameObject;
+    public bool isDead => stats.isDead;
     public abstract void Move(Vector3 target);
     public abstract void Attack();
     public abstract void TakingDamage(int damage);
     public abstract void TakingHit(int damage, float time);
     public abstract IEnumerator TakingDizzy(float time);
-    /// <summary>
-    /// 死亡动画结束时触发
-    /// </summary>
-    public abstract void OnDeathAnimEnd();
     public abstract void RecoverHP(int point);
     public Dictionary<SkillId, SkillBase> skills;
 
@@ -37,7 +34,14 @@ public abstract class ControllerBase : MonoBehaviour, IDamage
             HealthBarManager.Instance.RegisterController(this);
         }
     }
-
+    protected virtual void Update()
+    {
+        if (isDead) return;
+    }
+    protected virtual void LateUpdate()
+    {
+        if (isDead) return;
+    }
     public virtual void InitSkills()
     {
         skills = new Dictionary<SkillId, SkillBase>();
@@ -49,7 +53,6 @@ public abstract class ControllerBase : MonoBehaviour, IDamage
             skills.Add(skillId, skill as SkillBase);
         }
     }
-
 }
 
 

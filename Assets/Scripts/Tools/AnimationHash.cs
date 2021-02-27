@@ -16,4 +16,6 @@ public sealed class AnimationHash
     public static readonly int isDefensing = Animator.StringToHash("isDefensing");
     public static readonly int isDizzying = Animator.StringToHash("isDizzying");
     public static readonly int isDead = Animator.StringToHash("isDead");
+    public static readonly int dead = Animator.StringToHash("dead");
+    public static readonly int health = Animator.StringToHash("health");
 }

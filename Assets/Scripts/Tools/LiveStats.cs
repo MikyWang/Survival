@@ -12,6 +12,7 @@ public partial class LiveStats : MonoBehaviour
     private void Start()
     {
         liveData = Instantiate(tmp_LiveData);
+        liveData.cooldown = 0;
     }
     private void Update()
     {

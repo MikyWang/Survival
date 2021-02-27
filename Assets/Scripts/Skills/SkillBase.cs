@@ -21,6 +21,7 @@ public abstract class SkillBase : MonoBehaviour
         skillData = Instantiate(tmp_skillData);
         animator = GetComponent<Animator>();
         stats = GetComponent<LiveStats>();
+        skillData.cooldown = 0;
     }
     protected virtual void Update()
     {

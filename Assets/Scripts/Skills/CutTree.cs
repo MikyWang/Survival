@@ -19,7 +19,15 @@ public class CutTree : SkillBase
         base.Update();
         if (target != null)
         {
-            Excute(target);
+            if (target.isDead)
+            {
+                Interrupt();
+                return;
+            }
+            if (!isCutting)
+            {
+                Excute(target);
+            }
         }
     }
 

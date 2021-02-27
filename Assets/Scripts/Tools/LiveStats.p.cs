@@ -14,4 +14,5 @@ public partial class LiveStats
     public int level => liveData.level;
     public int levelPoint => liveData.levelPoint;
     public int maxLevelPoint => liveData.maxLevelPoint;
+    public bool isDead => health <= 0;
 }
