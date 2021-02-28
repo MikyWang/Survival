@@ -10,6 +10,7 @@ public abstract class SkillBase : MonoBehaviour
     public abstract SkillId id { get; }
     [HideInInspector]
     public Skill_SO skillData;
+    public IDamage target { get; set; }
     public float cooldown => stats.cooldown + skillData.cooldown;
     public float skillDistance => stats.attackRange + skillData.distance;
     public int damage => stats.attack + skillData.attack;
@@ -52,13 +53,13 @@ public abstract class SkillBase : MonoBehaviour
         skillData.range = Mathf.FloorToInt(skillData.range * 1.5f);
     }
 
-    protected IEnumerator MoveToTarget(Transform target, Action OnRoad = null)
+    protected IEnumerator MoveToTarget(Action OnRoad = null)
     {
         var agent = GetComponent<NavMeshAgent>();
-        while (Vector3.Distance(transform.position, target.position) > skillDistance)
+        while (Vector3.Distance(transform.position, target.self.transform.position) > skillDistance)
         {
-            agent.destination = target.position;
             OnRoad?.Invoke();
+            agent.destination = target.self.transform.position;
             yield return null;
         }
         agent.destination = transform.position;

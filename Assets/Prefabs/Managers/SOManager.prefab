@@ -44,19 +44,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicDataList:
-  - name: peasant
+  - id: 0
     so: {fileID: 11400000, guid: ee27c3f7a3e58d74080968143a4d4d66, type: 2}
-  - name: skeleton
+  - id: 1
     so: {fileID: 11400000, guid: 1e2e10260bad137409edaaa0a71b39f6, type: 2}
+  - id: 3
+    so: {fileID: 11400000, guid: 5d15ca482446ca743b9190410d22d8e0, type: 2}
   spawnDataList:
-  - name: bat
-    so: {fileID: 11400000, guid: 28a869f658cdf0647a715635b39ced20, type: 2}
-  - name: skeleton
+  - id: 0
     so: {fileID: 11400000, guid: 9a1d0b5d1c748d3449e3bb338aea82fc, type: 2}
+  - id: 1
+    so: {fileID: 11400000, guid: 28a869f658cdf0647a715635b39ced20, type: 2}
   skillDataList:
-  - name: attack
+  - id: 0
     so: {fileID: 11400000, guid: 4eb53cd867c38764992709d8ac46cb2f, type: 2}
-  - name: cutTree
-    so: {fileID: 11400000, guid: 1e102a21a2f6b5f44b19aa354eedbacd, type: 2}
-  - name: hit
+  - id: 2
     so: {fileID: 11400000, guid: a69f27e71a4b6460dac8089ff24a7859, type: 2}
+  - id: 1
+    so: {fileID: 11400000, guid: 1e102a21a2f6b5f44b19aa354eedbacd, type: 2}

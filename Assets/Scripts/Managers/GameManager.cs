@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
     public List<GameObject> patrolPoints { get; private set; }
     public List<ISelected> selectedPlayers { get; private set; }
     public List<ISelected> playersInView { get; private set; }
-    CinemachineFreeLook Cam;
+    // CinemachineFreeLook Cam;
     override protected void Awake()
     {
         base.Awake();
@@ -21,7 +21,7 @@ public class GameManager : Singleton<GameManager>
         patrolPoints = GameObject.FindGameObjectsWithTag("PatrolPoint").ToList();
         selectedPlayers = new List<ISelected>();
         playersInView = new List<ISelected>();
-        Cam = FindObjectOfType<CinemachineFreeLook>();
+        // Cam = FindObjectOfType<CinemachineFreeLook>();
     }
 
     private void Start()
@@ -42,8 +42,8 @@ public class GameManager : Singleton<GameManager>
         }
         if (selectedPlayers.Count > 0)
         {
-            Cam.Follow = selectedPlayers[0].selectedObject.transform;
-            Cam.LookAt = selectedPlayers[0].selectedObject.transform;
+            // Cam.Follow = selectedPlayers[0].selectedObject.transform;
+            // Cam.LookAt = selectedPlayers[0].selectedObject.transform;
         }
     }
 

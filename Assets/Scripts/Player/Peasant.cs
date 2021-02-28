@@ -58,7 +58,6 @@ public class Peasant : PlayerController
     }
     private void CutTree(IDamage defender)
     {
-        cutTree.Interrupt();
         ChangeWeapon(WeaponType.Axe);
         cutTree.Excute(defender);
     }

@@ -5,30 +5,12 @@ using UnityEngine.AI;
 
 public class CutTree : SkillBase
 {
-    public IDamage target { get; set; }
     public bool isCutting { get; set; }
     public override SkillId id => SkillId.CutTree;
     public override void Excute(IDamage target)
     {
         this.target = target;
         StartCoroutine(Cut());
-    }
-
-    override protected void Update()
-    {
-        base.Update();
-        if (target != null)
-        {
-            if (target.isDead)
-            {
-                Interrupt();
-                return;
-            }
-            if (!isCutting)
-            {
-                Excute(target);
-            }
-        }
     }
 
     public override void Excute(Vector3 position)
@@ -38,22 +20,27 @@ public class CutTree : SkillBase
     public override void Interrupt()
     {
         target = null;
-        animator.SetTrigger(AnimationHash.endAttack);
+        if (isCutting)
+        {
+            animator.SetTrigger(AnimationHash.endAttack);
+        }
         StopAllCoroutines();
     }
     IEnumerator Cut()
     {
         if (target == null) yield break;
 
-        yield return MoveToTarget(target.self.transform, () =>
+        yield return MoveToTarget(() =>
         {
-            animator.SetTrigger(AnimationHash.endAttack);
+            if (isCutting)
+                animator.SetTrigger(AnimationHash.endAttack);
         });
-        if (CheckSkill())
+        while (!CheckSkill())
         {
-            transform.LookAt(target.self.transform);
-            animator.SetTrigger(AnimationHash.cutTree);
+            yield return null;
         }
+        transform.LookAt(target.self.transform);
+        animator.SetTrigger(AnimationHash.cutTree);
     }
 
     /// <summary>

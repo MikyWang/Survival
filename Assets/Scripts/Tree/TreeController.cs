@@ -9,8 +9,9 @@ public class TreeController : ControllerBase
     public override bool isHitting { get; set; }
     public override bool isDizzying { get => false; set { } }
     public override bool isThinking { get => false; set { } }
-
-    protected override void Awake()
+    public GameObject stumpPrefab;
+    public GameObject smokedPrefab;
+    override protected void Awake()
     {
         base.Awake();
         animator = GetComponent<Animator>();
@@ -67,12 +68,12 @@ public class TreeController : ControllerBase
         yield return new WaitForSeconds(time);
         HealthBarManager.Instance.UnregisterController(this);
     }
-
     IEnumerator Death()
     {
+        Instantiate(smokedPrefab, transform.position, Quaternion.identity);
+        Instantiate(stumpPrefab, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(1f);
         HealthBarManager.Instance.UnregisterController(this);
         Destroy(gameObject);
     }
-
 }

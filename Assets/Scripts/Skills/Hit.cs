@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class Hit : SkillBase
 {
-    public IDamage target { get; set; }
     public override SkillId id => SkillId.Hit;
     public override void Excute(IDamage target)
     {
@@ -28,7 +27,7 @@ public class Hit : SkillBase
     {
         if (target == null) yield break;
 
-        yield return MoveToTarget(target.self.transform);
+        yield return MoveToTarget();
         transform.LookAt(target.self.transform);
         if (CheckSkill())
         {

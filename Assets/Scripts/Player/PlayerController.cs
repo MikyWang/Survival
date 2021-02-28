@@ -8,7 +8,7 @@ public partial class PlayerController : ControllerBase, ISelected
 {
     protected NavMeshAgent agent;
     protected Animator animator;
-    protected override void Awake()
+    override protected void Awake()
     {
         base.Awake();
         agent = GetComponent<NavMeshAgent>();

@@ -3,7 +3,10 @@ guid: be9e2fcb4d68c6345aab248727f5a913
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - headUITransform: {instanceID: 0}
+  - stumpPrefab: {fileID: 108507113624723981, guid: 113454009f788e047947af9fbadc6a4d, type: 3}
+  - smokedPrefab: {fileID: 481947888716730270, guid: cbb3dfb7a6e92a845940d9aaf7d65cfd, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

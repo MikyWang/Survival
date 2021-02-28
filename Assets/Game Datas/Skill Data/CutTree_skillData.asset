@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: 1
   skillType: 1
   skillName: "\u780D\u6811"
-  cooldown: 2
+  cooldown: 1
   attack: 1
   level: 1
   maxLevel: 1

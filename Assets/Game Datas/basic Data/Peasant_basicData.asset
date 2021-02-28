@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Peasant_basicData
   m_EditorClassIdentifier: 
   id: 0
-  liveName: "\u751F\u8FD8\u8005"
+  liveName: "\u5E78\u5B58\u8005"
   health: 100
   maxHealth: 100
   attack: 0
   defense: 0
-  attackSpeed: 2
   cooldown: 1
   attackRange: 2
   level: 1

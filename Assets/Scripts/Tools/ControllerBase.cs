@@ -13,7 +13,7 @@ public abstract class ControllerBase : MonoBehaviour, IDamage
     public abstract bool isDizzying { get; set; }
     public abstract bool isThinking { get; set; }
     public GameObject self => gameObject;
-    public bool isDead => stats.isDead;
+    public bool isDead => stats ? stats.isDead : false;
     public abstract void Move(Vector3 target);
     public abstract void Attack();
     public abstract void TakingDamage(ControllerBase attacker, int damage);
@@ -21,7 +21,6 @@ public abstract class ControllerBase : MonoBehaviour, IDamage
     public abstract IEnumerator TakingDizzy(float time);
     public abstract void RecoverHP(int point);
     public Dictionary<SkillId, SkillBase> skills;
-
     protected virtual void Awake()
     {
         stats = GetComponent<LiveStats>();
