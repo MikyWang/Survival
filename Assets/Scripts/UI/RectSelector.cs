@@ -30,7 +30,7 @@ public class RectSelector : MonoBehaviour
     {
         if (!isSelected)
         {
-            boxTransform.sizeDelta = new Vector2(0, 0);
+            boxTransform.sizeDelta = Vector2.zero;
             return;
         }
 
@@ -71,7 +71,13 @@ public class RectSelector : MonoBehaviour
 
     private void LateUpdate()
     {
-
+        //FIXME:考虑是否要屏蔽UI
+        // if (EventSystem.current && EventSystem.current.IsPointerOverGameObject())
+        // {
+        //     isSelected = false;
+        //     boxTransform.sizeDelta = Vector2.zero;
+        //     return;
+        // }
         StartSelect();
         OnSelect();
         EndSelect();

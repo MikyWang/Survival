@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.EventSystems;
 
 public class MouseManager : Singleton<MouseManager>
 {
     public Texture2D arrow, select, cutTree;
     public event Action<Vector3> OnEnvironmentClicked;
     public event Action<IDamage> OnTreeClicked;
-
     RaycastHit hitInfo;
     override protected void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this);
     }
-
     private void Update()
     {
         SetCursorTexture();
@@ -24,7 +23,6 @@ public class MouseManager : Singleton<MouseManager>
 
     void SetCursorTexture()
     {
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hitInfo))
         {
@@ -44,8 +42,6 @@ public class MouseManager : Singleton<MouseManager>
         }
 
     }
-
-
     private void MouseControl()
     {
         if (Input.GetMouseButtonDown(0) && hitInfo.collider)

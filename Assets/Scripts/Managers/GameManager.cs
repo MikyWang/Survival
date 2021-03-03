@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using DG.Tweening;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -17,7 +18,7 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
         DontDestroyOnLoad(this);
-
+        // DOTween.Init();
         patrolPoints = GameObject.FindGameObjectsWithTag("PatrolPoint").ToList();
         selectedPlayers = new List<ISelected>();
         playersInView = new List<ISelected>();
@@ -54,6 +55,15 @@ public class GameManager : Singleton<GameManager>
             player.UnSelect();
         }
         selectedPlayers.Clear();
+        // dragSize.Set(Mathf.Abs(dragSize.x / 2), 1, Mathf.Abs(dragSize.z / 2));
+        // RaycastHit[] hits = Physics.BoxCastAll(dragCenter, dragSize, Vector3.up, Quaternion.identity, 0, LayerMask.GetMask("Lives"));
+        // foreach (RaycastHit hit in hits)
+        // {
+        //     if (hit.collider.TryGetComponent(out ISelected selectedPlayer))
+        //     {
+        //         ToggleSelector(selectedPlayer);
+        //     }
+        // }
         foreach (ISelected selectedPlayer in playersInView)
         {
             Vector2 screenPos = Camera.main.WorldToScreenPoint(selectedPlayer.selectedObject.transform.position);

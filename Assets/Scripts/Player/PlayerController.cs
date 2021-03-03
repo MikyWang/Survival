@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -67,6 +68,7 @@ public partial class PlayerController : ControllerBase, ISelected
         {
             Instantiate(highlightingPrefab, transform);
         }
+        ring.DOScale(0, .2f).From().SetEase(Ease.OutBack);
         MouseManager.Instance.OnEnvironmentClicked += Move;
 
     }
