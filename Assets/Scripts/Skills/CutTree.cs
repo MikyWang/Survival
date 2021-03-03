@@ -40,7 +40,12 @@ public class CutTree : SkillBase
             yield return null;
         }
         transform.LookAt(target.self.transform);
-        animator.SetTrigger(AnimationHash.cutTree);
+        while (target != null)
+        {
+            animator.SetTrigger(AnimationHash.cutTree);
+            yield return Cut();
+        }
+
     }
 
     /// <summary>
