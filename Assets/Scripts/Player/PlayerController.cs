@@ -63,12 +63,12 @@ public partial class PlayerController : ControllerBase, ISelected
         if (ring != null)
         {
             ring.gameObject.SetActive(true);
+            ring.DOScale(0, .2f).From().SetEase(Ease.OutBack);
         }
         else
         {
             Instantiate(highlightingPrefab, transform);
         }
-        ring.DOScale(0, .2f).From().SetEase(Ease.OutBack);
         MouseManager.Instance.OnEnvironmentClicked += Move;
 
     }

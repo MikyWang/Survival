@@ -5,6 +5,7 @@ using UnityEngine;
 public interface IDamage
 {
     public GameObject self { get; }
+    public LiveStats stats { get; }
     public bool isHitting { get; set; }
     public bool isDizzying { get; set; }
     public bool isDead { get; }

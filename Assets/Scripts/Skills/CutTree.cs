@@ -45,7 +45,6 @@ public class CutTree : SkillBase
             animator.SetTrigger(AnimationHash.cutTree);
             yield return Cut();
         }
-
     }
 
     /// <summary>
