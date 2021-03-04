@@ -26,20 +26,22 @@ public class CameraManager : MonoBehaviour
     {
         moveInput.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
 
-        // if (mouseMove)
-        // {
-        //     Vector2 mousePos = Input.mousePosition;
+#if UNITY_STANDALONE
+        if (mouseMove)
+        {
+            Vector2 mousePos = Input.mousePosition;
 
-        //     if (mousePos.x > Screen.width * 0.95f && mousePos.x < Screen.width)
-        //         moveInput.x = 1;
-        //     else if (mousePos.x < Screen.width * 0.05f && mousePos.x > 0)
-        //         moveInput.x = -1;
+            if (mousePos.x > Screen.width * 0.95f && mousePos.x < Screen.width)
+                moveInput.x = 1;
+            else if (mousePos.x < Screen.width * 0.05f && mousePos.x > 0)
+                moveInput.x = -1;
 
-        //     if (mousePos.y > Screen.height * 0.95f && mousePos.y < Screen.height)
-        //         moveInput.z = 1;
-        //     else if (mousePos.y < Screen.height * 0.05f && mousePos.y > 0)
-        //         moveInput.z = -1;
-        // }
+            if (mousePos.y > Screen.height * 0.95f && mousePos.y < Screen.height)
+                moveInput.z = 1;
+            else if (mousePos.y < Screen.height * 0.05f && mousePos.y > 0)
+                moveInput.z = -1;
+        }
+#endif
 
         Vector3 movementDirection = mainCamera.TransformDirection(moveInput);
         movementDirection.y = 0;
