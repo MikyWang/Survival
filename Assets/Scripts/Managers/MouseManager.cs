@@ -6,10 +6,11 @@ using UnityEngine.EventSystems;
 
 public class MouseManager : Singleton<MouseManager>
 {
-    public Texture2D arrow, select, cutTree;
+    public Texture2D arrow, select, cutTree, move, moveClicked, attack;
     public event Action<Vector3> OnEnvironmentClicked;
     public event Action<IDamage> OnTreeClicked;
     RaycastHit hitInfo;
+    bool isMoveClicked;
     override protected void Awake()
     {
         base.Awake();
@@ -23,6 +24,8 @@ public class MouseManager : Singleton<MouseManager>
 
     void SetCursorTexture()
     {
+        if (isMoveClicked) return;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hitInfo))
         {
@@ -30,13 +33,16 @@ public class MouseManager : Singleton<MouseManager>
             switch (hitInfo.collider.tag)
             {
                 case "Ground":
-                    Cursor.SetCursor(arrow, new Vector2(0, 0), CursorMode.Auto);
+                    Cursor.SetCursor(move, new Vector2(0, 0), CursorMode.Auto);
                     break;
                 case "Tree":
                     Cursor.SetCursor(cutTree, new Vector2(0, 0), CursorMode.Auto);
                     break;
                 case "Player":
                     Cursor.SetCursor(select, new Vector2(0, 0), CursorMode.Auto);
+                    break;
+                default:
+                    Cursor.SetCursor(arrow, new Vector2(0, 0), CursorMode.Auto);
                     break;
             }
         }
@@ -60,6 +66,7 @@ public class MouseManager : Singleton<MouseManager>
             switch (col.tag)
             {
                 case "Ground":
+                    StartCoroutine(SetMoveCursor());
                     OnEnvironmentClicked?.Invoke(hitInfo.point);
                     break;
                 case "Tree":
@@ -68,6 +75,14 @@ public class MouseManager : Singleton<MouseManager>
                     break;
             }
         }
+    }
+
+    IEnumerator SetMoveCursor()
+    {
+        isMoveClicked = true;
+        Cursor.SetCursor(moveClicked, new Vector2(0, 0), CursorMode.Auto);
+        yield return new WaitForSeconds(0.1f);
+        isMoveClicked = false;
     }
 
 }
