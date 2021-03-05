@@ -20,9 +20,12 @@ public class HealthBarManager : Singleton<HealthBarManager>
                 {
                     var health = Instantiate(healthBarPrefab, transform);
                     liveHealthBars.Add(hashId, health);
+                    liveHealthBars[hashId].GetComponent<HealthBar>().UpdateBarUI(live);
                 }
                 liveHealthBars[hashId].SetActive(true);
-                liveHealthBars[hashId].GetComponent<HealthBar>().UpdateBarUI(live);
+                var pos = live.headUITransform.position;
+                liveHealthBars[hashId].transform.position = pos;
+                liveHealthBars[hashId].transform.forward = Camera.main.transform.forward;
             }
             else
             {

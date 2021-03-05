@@ -26,9 +26,7 @@ public class HealthBar : MonoBehaviour
     public void UpdateBarUI(ControllerBase live)
     {
         if (live.stats == null) return;
-        var pos = live.headUITransform.position;
-        transform.position = pos;
-        transform.forward = Camera.main.transform.forward;
+
         healthText.text = $"{live.stats.health}/{live.stats.maxHealth}";
         NameText.text = live.stats.liveName;
         if (live.CompareTag("Player"))
