@@ -23,6 +23,7 @@ public partial class LiveStats : MonoBehaviour
     {
         var point = Mathf.Max(damage - defense, 1);
         liveData.health = Mathf.Max(liveData.health - point, 0);
+        Notify();
     }
 
     public bool CheckSkill()
@@ -48,5 +49,6 @@ public partial class LiveStats : MonoBehaviour
             liveData.defense += liveData.growthDefensePoint;
             liveData.health = maxHealth;
         }
+        Notify();
     }
 }

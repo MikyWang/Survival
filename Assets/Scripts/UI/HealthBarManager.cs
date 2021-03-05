@@ -20,7 +20,10 @@ public class HealthBarManager : Singleton<HealthBarManager>
                 {
                     var health = Instantiate(healthBarPrefab, transform);
                     liveHealthBars.Add(hashId, health);
-                    liveHealthBars[hashId].GetComponent<HealthBar>().UpdateBarUI(live);
+                    var bar = health.GetComponent<HealthBar>();
+                    bar.UpdateBarUI(live.stats);
+                    //TODO:修复订阅错误
+                    live.stats.Subscribe(bar);
                 }
                 liveHealthBars[hashId].SetActive(true);
                 var pos = live.headUITransform.position;

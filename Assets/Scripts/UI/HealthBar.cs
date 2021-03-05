@@ -4,8 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
-public class HealthBar : MonoBehaviour
+public class HealthBar : MonoBehaviour, IObserver<LiveStats>
 {
     public Image healthSlider;
     public Image expSlider;
@@ -23,13 +24,22 @@ public class HealthBar : MonoBehaviour
         levelHolder.SetActive(false);
     }
 
-    public void UpdateBarUI(ControllerBase live)
-    {
-        if (live.stats == null) return;
+    public void OnCompleted() { }
 
-        healthText.text = $"{live.stats.health}/{live.stats.maxHealth}";
-        NameText.text = live.stats.liveName;
-        if (live.CompareTag("Player"))
+    public void OnError(Exception error) { }
+
+    public void OnNext(LiveStats value)
+    {
+        UpdateBarUI(value);
+    }
+
+    public void UpdateBarUI(LiveStats stats)
+    {
+        if (stats == null) return;
+
+        healthText.text = $"{stats.health}/{stats.maxHealth}";
+        NameText.text = stats.liveName;
+        if (stats.CompareTag("Player"))
         {
             NameText.color = new Color(0, 176, 249, 255);
         }
@@ -37,15 +47,15 @@ public class HealthBar : MonoBehaviour
         {
             NameText.color = Color.red;
         }
-        if (live.stats.maxLevelPoint > 0)
+        if (stats.maxLevelPoint > 0)
         {
-            levelText.text = live.stats.level.ToString();
-            expSlider.fillAmount = (float)live.stats.levelPoint / live.stats.maxLevelPoint;
-            expText.text = $"{live.stats.levelPoint}/{live.stats.maxLevelPoint}";
+            levelText.text = stats.level.ToString();
+            expSlider.fillAmount = (float)stats.levelPoint / stats.maxLevelPoint;
+            expText.text = $"{stats.levelPoint}/{stats.maxLevelPoint}";
             levelImg.SetActive(true);
             levelHolder.SetActive(true);
         }
-        healthSlider.fillAmount = (float)live.stats.health / live.stats.maxHealth;
+        healthSlider.fillAmount = (float)stats.health / stats.maxHealth;
     }
 
 }
