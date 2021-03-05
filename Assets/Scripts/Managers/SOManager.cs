@@ -5,17 +5,17 @@ using UnityEngine;
 public class SOManager : Singleton<SOManager>
 {
     [Header("基本数据")]
-    [SerializeField]
-    private List<Live_SOData> basicDataList;
+    [SerializeField] List<SOData<LiveId, Live_SO>> basicDataList;
     [Header("怪物生成")]
-    [SerializeField]
-    private List<MonsterSpawn_SOData> spawnDataList;
+    [SerializeField] List<SOData<MonsterId, MonsterSpawner_SO>> spawnDataList;
     [Header("技能数据")]
-    [SerializeField]
-    private List<Skill_SOData> skillDataList;
+    [SerializeField] List<SOData<SkillId, Skill_SO>> skillDataList;
+    [Header("资源数据")]
+    [SerializeField] List<SOData<ResourceId, Resource_SO>> resourceDataList;
     public Dictionary<LiveId, Live_SO> basicDataDic { get; private set; }
     public Dictionary<MonsterId, MonsterSpawner_SO> spawnDataDic { get; private set; }
     public Dictionary<SkillId, Skill_SO> skillDataDic { get; private set; }
+    public Dictionary<ResourceId, Resource_SO> resourceDataDic { get; private set; }
 
     override protected void Awake()
     {
@@ -23,51 +23,30 @@ public class SOManager : Singleton<SOManager>
         InitDictionary();
         DontDestroyOnLoad(this);
     }
-    private void InitDictionary()
+    public void InitDictionary()
     {
-        basicDataDic = new Dictionary<LiveId, Live_SO>();
-        spawnDataDic = new Dictionary<MonsterId, MonsterSpawner_SO>();
-        skillDataDic = new Dictionary<SkillId, Skill_SO>();
-        foreach (var data in basicDataList)
+        basicDataDic = InitDictionaryInternal(basicDataList);
+        spawnDataDic = InitDictionaryInternal(spawnDataList);
+        skillDataDic = InitDictionaryInternal(skillDataList);
+        resourceDataDic = InitDictionaryInternal(resourceDataList);
+    }
+    Dictionary<TId, TSO> InitDictionaryInternal<TId, TSO>(List<SOData<TId, TSO>> dataList)
+    {
+        var dictionary = new Dictionary<TId, TSO>();
+        foreach (var data in dataList)
         {
-            if (!basicDataDic.ContainsKey(data.id))
+            if (!dictionary.ContainsKey(data.id))
             {
-                basicDataDic.Add(data.id, data.so);
+                dictionary.Add(data.id, data.so);
             }
         }
-        foreach (var data in spawnDataList)
-        {
-            if (!spawnDataDic.ContainsKey(data.id))
-            {
-                spawnDataDic.Add(data.id, data.so as MonsterSpawner_SO);
-            }
-        }
-        foreach (var data in skillDataList)
-        {
-            if (!skillDataDic.ContainsKey(data.id))
-            {
-                skillDataDic.Add(data.id, data.so as Skill_SO);
-            }
-        }
+        return dictionary;
     }
 
 }
 [System.Serializable]
-public class MonsterSpawn_SOData
+public class SOData<TId, TSO>
 {
-    public MonsterId id;
-    public MonsterSpawner_SO so;
-}
-
-[System.Serializable]
-public class Live_SOData
-{
-    public LiveId id;
-    public Live_SO so;
-}
-[System.Serializable]
-public class Skill_SOData
-{
-    public SkillId id;
-    public Skill_SO so;
+    public TId id;
+    public TSO so;
 }

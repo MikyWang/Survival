@@ -19,3 +19,5 @@ public enum MonsterId
 {
     Skeleton, Bat
 }
+
+public enum ResourceId { Wood, Food, Gold }

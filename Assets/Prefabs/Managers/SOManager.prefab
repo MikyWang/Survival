@@ -62,3 +62,10 @@ MonoBehaviour:
     so: {fileID: 11400000, guid: a69f27e71a4b6460dac8089ff24a7859, type: 2}
   - id: 1
     so: {fileID: 11400000, guid: 1e102a21a2f6b5f44b19aa354eedbacd, type: 2}
+  resourceDataList:
+  - id: 0
+    so: {fileID: 11400000, guid: c7c583c3ca0d1024cb16453865c350be, type: 2}
+  - id: 1
+    so: {fileID: 11400000, guid: 184430eb1241bd94ab38493fe3844dc6, type: 2}
+  - id: 2
+    so: {fileID: 11400000, guid: cedfa21cab9482942a9100e75105acb0, type: 2}

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   monsterPrefab: {fileID: 7239254853232607504, guid: 75eb7d378ac084c41b1f7a68915c2421, type: 3}
-  remainingTime: 1
+  remainingTime: 120
   period: 60
   count: 5

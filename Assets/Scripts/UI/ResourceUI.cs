@@ -1,0 +1,24 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ResourceUI : MonoBehaviour, IObserver<Resource>
+{
+    public ResourceId id;
+    TMP_Text text;
+    private void Start()
+    {
+        text = GetComponentInChildren<TMP_Text>();
+        var resource = GameManager.Instance.resources.Find(r => r.id == id);
+        resource.Subscribe(this);
+    }
+    public void OnCompleted() { }
+    public void OnError(Exception error) { }
+    public void OnNext(Resource resource)
+    {
+        text.text = resource.amount.ToString();
+    }
+}

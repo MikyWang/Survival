@@ -1,10 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
-using System;
 
 public class HealthBar : MonoBehaviour, IObserver<LiveStats>
 {
@@ -14,6 +14,7 @@ public class HealthBar : MonoBehaviour, IObserver<LiveStats>
     public TMP_Text healthText;
     public TMP_Text levelText;
     public TMP_Text expText;
+    public IDisposable unsubscribe { get; set; }
     private GameObject levelImg;
     private GameObject levelHolder;
     public void Awake()
@@ -23,11 +24,8 @@ public class HealthBar : MonoBehaviour, IObserver<LiveStats>
         levelImg.SetActive(false);
         levelHolder.SetActive(false);
     }
-
     public void OnCompleted() { }
-
     public void OnError(Exception error) { }
-
     public void OnNext(LiveStats value)
     {
         UpdateBarUI(value);
@@ -35,7 +33,7 @@ public class HealthBar : MonoBehaviour, IObserver<LiveStats>
 
     public void UpdateBarUI(LiveStats stats)
     {
-        if (stats == null) return;
+        if (stats == null || !gameObject.activeSelf) return;
 
         healthText.text = $"{stats.health}/{stats.maxHealth}";
         NameText.text = stats.liveName;
@@ -56,6 +54,10 @@ public class HealthBar : MonoBehaviour, IObserver<LiveStats>
             levelHolder.SetActive(true);
         }
         healthSlider.fillAmount = (float)stats.health / stats.maxHealth;
+    }
+    private void OnDestroy()
+    {
+        unsubscribe.Dispose();
     }
 
 }

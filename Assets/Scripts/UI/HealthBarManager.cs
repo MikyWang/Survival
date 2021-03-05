@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 
 public class HealthBarManager : Singleton<HealthBarManager>
 {
@@ -22,8 +22,7 @@ public class HealthBarManager : Singleton<HealthBarManager>
                     liveHealthBars.Add(hashId, health);
                     var bar = health.GetComponent<HealthBar>();
                     bar.UpdateBarUI(live.stats);
-                    //TODO:修复订阅错误
-                    live.stats.Subscribe(bar);
+                    bar.unsubscribe = live.stats.Subscribe(bar);
                 }
                 liveHealthBars[hashId].SetActive(true);
                 var pos = live.headUITransform.position;

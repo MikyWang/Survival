@@ -4,14 +4,13 @@ using UnityEngine;
 
 public partial class LiveStats : IObservable<LiveStats>
 {
-    [SerializeField] List<IObserver<LiveStats>> observers;
+    [SerializeField] List<IObserver<LiveStats>> observers = new List<IObserver<LiveStats>>();
 
     public IDisposable Subscribe(IObserver<LiveStats> observer)
     {
         observers.Add(observer);
-        return new Unsubscribe(observers, observer);
+        return new Unsubscribe<LiveStats>(observers, observer);
     }
-
     private void Notify()
     {
         foreach (var observer in observers)
@@ -19,28 +18,4 @@ public partial class LiveStats : IObservable<LiveStats>
             observer.OnNext(this);
         }
     }
-
-    /// <summary>
-    /// 取消订阅类
-    /// </summary>
-    private class Unsubscribe : IDisposable
-    {
-        List<IObserver<LiveStats>> observers;
-        IObserver<LiveStats> observer;
-        public Unsubscribe(List<IObserver<LiveStats>> observers
-        , IObserver<LiveStats> observer)
-        {
-            this.observer = observer;
-            this.observers = observers;
-        }
-
-        public void Dispose()
-        {
-            if (this.observers != null)
-            {
-                this.observers.Remove(observer);
-            }
-        }
-    }
-
 }

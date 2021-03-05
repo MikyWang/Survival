@@ -1,15 +1,16 @@
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+using System.Linq;
 using Cinemachine;
 using DG.Tweening;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
     public GameObject player;
     public GameObject highlightingPrefab;
+    public List<Resource> resources;
     public List<GameObject> patrolPoints { get; private set; }
     public List<ISelected> selectedPlayers { get; private set; }
     public List<ISelected> playersInView { get; private set; }
