@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -39,7 +40,8 @@ public class CutTree : SkillBase
         {
             yield return null;
         }
-        transform.LookAt(target.self.transform);
+        // transform.LookAt(target.self.transform);
+        transform.DOLookAt(target.self.transform.position, 0.1f);
         while (target != null)
         {
             animator.SetTrigger(AnimationHash.cutTree);
