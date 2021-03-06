@@ -28,6 +28,16 @@ public class Resource : IObservable<Resource>
             Notify();
         }
     }
+
+    public int maxAmount
+    {
+        get => resourceData.maxAmount;
+        set
+        {
+            resourceData.maxAmount = value;
+            Notify();
+        }
+    }
     [SerializeField] List<IObserver<Resource>> observers = new List<IObserver<Resource>>();
     public IDisposable Subscribe(IObserver<Resource> observer)
     {

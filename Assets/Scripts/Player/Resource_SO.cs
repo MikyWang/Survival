@@ -8,5 +8,6 @@ public class Resource_SO : ScriptableObject
     public ResourceId resourceId;
     public string resourceName;
     public int amount;
+    public int maxAmount;
     [TextArea] public string description;
 }

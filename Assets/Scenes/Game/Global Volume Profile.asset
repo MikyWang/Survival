@@ -12,29 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   color:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {r: 0.2627451, g: 0.21568628, b: 0.22352941, a: 1}
     hdr: 0
     showAlpha: 0
     showEyeDropper: 1
   center:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.255
+    m_Value: 0.2
     min: 0
     max: 1
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.294
+    m_Value: 0.5
     min: 0.01
     max: 1
   rounded:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
 --- !u!114 &-6810639212144152446
 MonoBehaviour:
@@ -106,11 +106,11 @@ MonoBehaviour:
   m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
-    m_Value: 1.2
+    m_Value: 1.5
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 8.58
+    m_Value: 8
     min: 0
   scatter:
     m_OverrideState: 0
@@ -307,17 +307,17 @@ MonoBehaviour:
   m_AdvancedMode: 0
   redOutRedIn:
     m_OverrideState: 1
-    m_Value: 129
+    m_Value: -17
     min: -200
     max: 200
   redOutGreenIn:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 79
     min: -200
     max: 200
   redOutBlueIn:
     m_OverrideState: 1
-    m_Value: -24
+    m_Value: -200
     min: -200
     max: 200
   greenOutRedIn:
@@ -402,10 +402,10 @@ MonoBehaviour:
   m_AdvancedMode: 0
   postExposure:
     m_OverrideState: 1
-    m_Value: 1.6
+    m_Value: 0.2
   contrast:
     m_OverrideState: 1
-    m_Value: 5
+    m_Value: 15
     min: -100
     max: 100
   colorFilter:

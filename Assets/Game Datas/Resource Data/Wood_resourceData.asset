@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceId: 0
   resourceName: "\u6728\u6750"
-  amount: 0
+  amount: 50
+  maxAmount: 999999
   description: "\u975E\u5E38\u91CD\u8981\u7684\u8D44\u6E90\uFF0C\u5E78\u5B58\u8005\u4EEC\u7528\u5B83\u6765\u642D\u5EFA\u5404\u79CD\u5EFA\u7B51\u3002"

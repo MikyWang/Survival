@@ -15,4 +15,5 @@ MonoBehaviour:
   resourceId: 2
   resourceName: "\u91D1\u5E01"
   amount: 0
+  maxAmount: 999999
   description: "\u975E\u5E38\u91CD\u8981\u7684\u8D44\u6E90\uFF0C\u7528\u5B83\u6765\u62DB\u52DF\u961F\u4F0D\u3002"

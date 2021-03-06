@@ -19,6 +19,12 @@ public class ResourceUI : MonoBehaviour, IObserver<Resource>
     public void OnError(Exception error) { }
     public void OnNext(Resource resource)
     {
-        text.text = resource.amount.ToString();
+        if (id == ResourceId.Food)
+        {
+            text.text = $"{resource.amount}/{resource.maxAmount}";
+            return;
+        }
+
+        text.text = resource.amount.ToString("N0");
     }
 }
