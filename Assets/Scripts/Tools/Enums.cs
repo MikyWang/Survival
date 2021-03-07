@@ -8,7 +8,7 @@ public enum LiveId
 }
 public enum SkillId
 {
-    Attack, CutTree, Hit
+    Attack, CutTree, Hit, Build
 }
 public enum SkillType
 {
@@ -19,5 +19,5 @@ public enum MonsterId
 {
     Skeleton, Bat
 }
-
 public enum ResourceId { Wood, Food, Gold }
+public enum BuildingId { SmallTent, MiddleTent, LargeTent }

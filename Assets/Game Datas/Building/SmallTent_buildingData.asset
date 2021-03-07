@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c9c36a2a494f24d82cf2e5c4cba755, type: 3}
+  m_Name: SmallTent_buildingData
+  m_EditorClassIdentifier: 
+  id: 0
+  buildingName: "\u5C0F\u5E10\u7BF7"
+  buildingProgress: 0
+  radius: 0
+  woodCost: 50
+  goldCost: 0
+  progressEveryTime: 20
+  canUpgrade: 1
+  upgradeBuilding: 1
+  description: "\u5C0F\u5E10\u7BF7,\u63D0\u4F9B\u98DF\u7269\u3002"

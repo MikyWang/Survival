@@ -5,15 +5,18 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(Animator), typeof(LiveStats))]
-public abstract class SkillBase : MonoBehaviour
+public abstract partial class SkillBase : MonoBehaviour
 {
     public abstract SkillId id { get; }
     [HideInInspector]
     public Skill_SO skillData;
     public IDamage target { get; set; }
     public float cooldown => stats.cooldown + skillData.cooldown;
-    public float skillDistance => stats.attackRange + skillData.distance;
-    public int damage => stats.attack + skillData.attack;
+    public virtual int distance => stats.attackRange + skillData.distance;
+    public virtual int damage => stats.attack + skillData.attack;
+    public Sprite icon => skillData.icon;
+    public string skillName => skillData.skillName;
+    public float cooldownPercent => (cooldown / (SOManager.Instance.basicDataDic[stats.id].cooldown + tmp_skillData.cooldown));
     public bool canUse { get; set; } = true;
     protected Animator animator;
     protected LiveStats stats;
@@ -30,6 +33,7 @@ public abstract class SkillBase : MonoBehaviour
     protected virtual void Update()
     {
         skillData.cooldown -= Time.deltaTime;
+        Notify();
     }
 
     public virtual bool CheckSkill()
@@ -56,7 +60,7 @@ public abstract class SkillBase : MonoBehaviour
     protected IEnumerator MoveToTarget(Action OnRoad = null)
     {
         var agent = GetComponent<NavMeshAgent>();
-        while (Vector3.Distance(transform.position, target.self.transform.position) > skillDistance)
+        while (Vector3.Distance(transform.position, target.self.transform.position) > distance)
         {
             OnRoad?.Invoke();
             agent.destination = target.self.transform.position;

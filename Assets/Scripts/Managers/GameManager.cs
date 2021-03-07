@@ -42,11 +42,7 @@ public class GameManager : Singleton<GameManager>
             selectedPlayers.Add(selectedPlayer);
             selectedPlayer.Select(highlightingPrefab);
         }
-        if (selectedPlayers.Count > 0)
-        {
-            // Cam.Follow = selectedPlayers[0].selectedObject.transform;
-            // Cam.LookAt = selectedPlayers[0].selectedObject.transform;
-        }
+        SkillUIManager.Instance.UpdateSkillUI();
     }
 
     public void SelectRangePlayers(Rect rect)
@@ -56,15 +52,8 @@ public class GameManager : Singleton<GameManager>
             player.UnSelect();
         }
         selectedPlayers.Clear();
-        // dragSize.Set(Mathf.Abs(dragSize.x / 2), 1, Mathf.Abs(dragSize.z / 2));
-        // RaycastHit[] hits = Physics.BoxCastAll(dragCenter, dragSize, Vector3.up, Quaternion.identity, 0, LayerMask.GetMask("Lives"));
-        // foreach (RaycastHit hit in hits)
-        // {
-        //     if (hit.collider.TryGetComponent(out ISelected selectedPlayer))
-        //     {
-        //         ToggleSelector(selectedPlayer);
-        //     }
-        // }
+        SkillUIManager.Instance.UpdateSkillUI();
+
         foreach (ISelected selectedPlayer in playersInView)
         {
             Vector2 screenPos = Camera.main.WorldToScreenPoint(selectedPlayer.selectedObject.transform.position);

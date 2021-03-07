@@ -48,7 +48,7 @@ public class CameraManager : MonoBehaviour
         var pos = transform.position + movementDirection.normalized * Time.deltaTime * cameraSpeed;
         transform.position = new Vector3(Mathf.Clamp(pos.x, xZoomMovement.x, xZoomMovement.y), pos.y, Mathf.Clamp(pos.z, zZoomMovement.x, zZoomMovement.y));
 
-        zoomObject.localPosition += new Vector3(0, Input.mouseScrollDelta.y, -Input.mouseScrollDelta.y);
+        zoomObject.localPosition += new Vector3(0, -Input.mouseScrollDelta.y, Input.mouseScrollDelta.y);
         zoomObject.localPosition = new Vector3(zoomObject.localPosition.x, Mathf.Clamp(zoomObject.localPosition.y, yZoomLimits.x, yZoomLimits.y), Mathf.Clamp(zoomObject.localPosition.z, zZoomLimits.x, zZoomLimits.y));
 
     }

@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using UnityEngine.EventSystems;
 
 public class MouseManager : Singleton<MouseManager>
@@ -18,6 +18,11 @@ public class MouseManager : Singleton<MouseManager>
     }
     private void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            Cursor.SetCursor(arrow, new Vector2(0, 0), CursorMode.Auto);
+            return;
+        }
         SetCursorTexture();
         MouseControl();
     }

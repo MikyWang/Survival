@@ -9,6 +9,7 @@ TagManager:
   - Ring
   - Tree
   - HealthBarCanvas
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Ground
   - Lives
   - MiniMap
-  - Tree
+  - Resource
   - 
   - 
   - 

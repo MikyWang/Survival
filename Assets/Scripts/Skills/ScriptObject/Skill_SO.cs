@@ -7,6 +7,7 @@ public class Skill_SO : ScriptableObject
 {
     public SkillId skillId;
     public SkillType skillType;
+    public Sprite icon;
     public string skillName;
     public float cooldown;
     public int attack;

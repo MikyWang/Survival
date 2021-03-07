@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class RectSelector : MonoBehaviour
 {
@@ -72,12 +72,11 @@ public class RectSelector : MonoBehaviour
     private void LateUpdate()
     {
         //FIXME:考虑是否要屏蔽UI
-        // if (EventSystem.current && EventSystem.current.IsPointerOverGameObject())
-        // {
-        //     isSelected = false;
-        //     boxTransform.sizeDelta = Vector2.zero;
-        //     return;
-        // }
+        if (!isSelected && EventSystem.current && EventSystem.current.IsPointerOverGameObject())
+        {
+            boxTransform.sizeDelta = Vector2.zero;
+            return;
+        }
         StartSelect();
         OnSelect();
         EndSelect();
