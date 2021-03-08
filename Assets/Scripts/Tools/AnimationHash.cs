@@ -6,6 +6,7 @@ public sealed class AnimationHash
 {
     public static readonly int speedHash = Animator.StringToHash("speed");
     public static readonly int cutTree = Animator.StringToHash("cutTree");
+    public static readonly int build = Animator.StringToHash("build");
     public static readonly int endAttack = Animator.StringToHash("endAttack");
     public static readonly int getHit = Animator.StringToHash("getHit");
     public static readonly int isWalking = Animator.StringToHash("isWalking");

@@ -75,4 +75,23 @@ public class GameManager : Singleton<GameManager>
             playersInView.Add(player);
         }
     }
+
+    public void TakeResources(int woodCost = 0, int goldCost = 0, int foodCost = 0)
+    {
+        foreach (var resource in resources)
+        {
+            switch (resource.id)
+            {
+                case ResourceId.Wood:
+                    resource.amount -= woodCost;
+                    break;
+                case ResourceId.Gold:
+                    resource.amount -= goldCost;
+                    break;
+                case ResourceId.Food:
+                    resource.amount -= foodCost;
+                    break;
+            }
+        }
+    }
 }

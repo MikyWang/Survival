@@ -15,6 +15,7 @@ public class Peasant : PlayerController
     public GameObject[] weapons;
     public GameObject[] packages;
     public CutTree cutTree => skills[SkillId.CutTree] as CutTree;
+    public Build build => skills[SkillId.Build] as Build;
     public override void Select(GameObject highlightingPrefab)
     {
         base.Select(highlightingPrefab);
@@ -62,9 +63,16 @@ public class Peasant : PlayerController
         cutTree.Excute(defender);
     }
 
+    public void Build(Building building)
+    {
+        ChangeWeapon(WeaponType.Hammer);
+        build.Excute(building);
+    }
+
     public override void Move(Vector3 target)
     {
         cutTree.Interrupt();
+        build.Interrupt();
         base.Move(target);
     }
 }

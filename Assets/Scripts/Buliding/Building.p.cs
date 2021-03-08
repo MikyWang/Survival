@@ -2,30 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class Building : MonoBehaviour
+public partial class Building : BuildingBase
 {
-    Building_SO stats;
-    public string buildingName => stats.buildingName;
-    public int radius => stats.radius;
-    public int woodCost => stats.woodCost;
-    public int goldCost => stats.goldCost;
-    public int progressEveryTime => stats.progressEveryTime;
-    public bool canUpgrade => stats.canUpgrade;
-    public BuildingId upgradeBuilding => stats.upgradeBuilding;
-    public string description => stats.description;
+    Building_SO buildingStats;
+    public string buildingName => buildingStats.buildingName;
+    public int radius => buildingStats.radius;
+    public int woodCost => buildingStats.woodCost;
+    public int goldCost => buildingStats.goldCost;
+    public int progressEveryTime => buildingStats.progressEveryTime;
+    public bool canUpgrade => buildingStats.canUpgrade;
+    public BuildingId upgradeBuilding => buildingStats.upgradeBuilding;
+    public string description => buildingStats.description;
+    public bool isFinished => buildingProgress >= 100;
     public int buildingProgress
     {
-        get => stats.buildingProgress;
+        get => buildingStats.buildingProgress;
         set
         {
-            stats.buildingProgress = value;
+            buildingStats.buildingProgress = value;
             Notify();
         }
     }
 
-    private void Start()
-    {
-        stats = Instantiate(SOManager.Instance.buildingDataDic[id]);
-    }
 
 }

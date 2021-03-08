@@ -13,6 +13,7 @@ public class SkillSlot : MonoBehaviour, IObserver<SkillBase>
     [SerializeField] TMP_Text skillName;
     IDisposable unsubscribe;
     int userId;
+    SkillBase bindSkill;
     public void InitSkillUI(SkillBase skill)
     {
         var id = skill.gameObject.GetInstanceID();
@@ -21,6 +22,7 @@ public class SkillSlot : MonoBehaviour, IObserver<SkillBase>
             userId = id;
             unsubscribe?.Dispose();
             unsubscribe = skill.Subscribe(this);
+            bindSkill = skill;
         }
         iconImg.sprite = skill.icon;
         skillName.text = skill.skillName;
@@ -33,5 +35,10 @@ public class SkillSlot : MonoBehaviour, IObserver<SkillBase>
     {
         cooldownImg.fillAmount = skill.cooldownPercent;
         cooldownText.text = $"{Mathf.Max(0, skill.cooldown).ToString("N1")}s";
+    }
+
+    public void Excute()
+    {
+        bindSkill.Excute();
     }
 }

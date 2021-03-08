@@ -3,7 +3,9 @@ guid: ae2109995912b5d45851f40902a9570a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - headUITransform: {instanceID: 0}
+  - buildParticlePrefab: {fileID: 3812730976576317601, guid: 7a7dd3af92c708744b770da2daf3506c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

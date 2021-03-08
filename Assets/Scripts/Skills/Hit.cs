@@ -16,7 +16,10 @@ public class Hit : SkillBase
     {
         throw new System.NotImplementedException();
     }
+    public override void Excute()
+    {
 
+    }
     public override void Interrupt()
     {
         target = null;

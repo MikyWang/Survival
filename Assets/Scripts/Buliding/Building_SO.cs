@@ -8,6 +8,8 @@ public class Building_SO : ScriptableObject
 {
     public BuildingId id;
     public string buildingName;
+    public Sprite icon;
+    public GameObject buildingPrefab;
     public int buildingProgress;
     public int radius;
     public int woodCost;

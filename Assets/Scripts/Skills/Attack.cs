@@ -41,4 +41,8 @@ public class Attack : SkillBase
     {
         target?.self.GetComponent<IDamage>().TakingDamage(controller, stats.attack);
     }
+    public override void Excute()
+    {
+
+    }
 }

@@ -68,7 +68,7 @@ public abstract partial class SkillBase : MonoBehaviour
         }
         agent.destination = transform.position;
     }
-
+    public abstract void Excute();
     public abstract void Excute(IDamage target);
     public abstract void Excute(Vector3 position);
     public abstract void Interrupt();

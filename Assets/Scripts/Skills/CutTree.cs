@@ -13,7 +13,10 @@ public class CutTree : SkillBase
         this.target = target;
         StartCoroutine(Cut());
     }
+    public override void Excute()
+    {
 
+    }
     public override void Excute(Vector3 position)
     {
         throw new System.NotImplementedException();
