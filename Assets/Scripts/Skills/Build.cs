@@ -13,9 +13,12 @@ public class Build : SkillBase
     {
         if (target.self.TryGetComponent<Building>(out var building))
         {
+            if (building.isFinished) return;
+
             this.target = target;
             skillData.distance = building.radius;
             skillData.attack = building.progressEveryTime;
+            building.OnBuildingFinished += Interrupt;
         }
         StartCoroutine(BuildBuilding());
     }
@@ -75,10 +78,6 @@ public class Build : SkillBase
             if (!building.isFinished)
             {
                 building.GlowUp();
-            }
-            else
-            {
-                Interrupt();
             }
         }
     }

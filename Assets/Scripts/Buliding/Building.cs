@@ -15,13 +15,20 @@ public partial class Building : IObservable<Building>
     List<IObserver<Building>> observers = new List<IObserver<Building>>();
     List<ISelected> selectedPlayers => GameManager.Instance.selectedPlayers;
     float height => headUITransform.localPosition.y - 1;
-    protected override void Start()
+    float originalHeight;
+    public event Action OnBuildingFinished;
+
+    protected override void Awake()
     {
-        buildingStats = Instantiate(SOManager.Instance.buildingDataDic[id]);
+        base.Awake();
         buildingMeshTransform = transform.GetChild(0);
         buildingRender = buildingMeshTransform.GetComponent<MeshRenderer>();
+        originalHeight = buildingMeshTransform.localPosition.y;
+    }
+
+    protected override void Start()
+    {
         SetUp();
-        CallBuilders();
     }
     public IDisposable Subscribe(IObserver<Building> observer)
     {
@@ -37,38 +44,32 @@ public partial class Building : IObservable<Building>
     }
     private void SetUp()
     {
+        buildingStats = Instantiate(SOManager.Instance.buildingDataDic[id]);
         buildingMeshTransform.localPosition = Vector3.down * height;
+        GameManager.Instance.CallBuildersToBuildBuilding(this);
     }
 
     public void GlowUp()
     {
         buildingProgress += progressEveryTime;
+        buildingMeshTransform.localPosition = Vector3.Lerp(Vector3.down * height, new Vector3(0, originalHeight, 0), (float)buildingProgress / 100);
+        Instantiate(buildParticlePrefab, transform.position, Quaternion.identity);
+        buildingMeshTransform.DOComplete();
+        buildingMeshTransform.DOShakeScale(.5f, .2f, 10, 90, true);
+
         if (isFinished)
         {
             FinishBuilding();
             return;
         }
-
-        buildingMeshTransform.localPosition = Vector3.Lerp(Vector3.down * height, new Vector3(0, height, 0), (float)buildingProgress / 100);
-        Instantiate(buildParticlePrefab, transform.position, Quaternion.identity);
-        buildingMeshTransform.DOComplete();
-        buildingMeshTransform.DOShakeScale(.5f, .2f, 10, 90, true);
     }
 
-    private void FinishBuilding()
+    void FinishBuilding()
     {
-        buildingRender.material.DOColor(stateColors[1], "_EmissionColor", .1f).OnComplete(() => buildingRender.material.DOColor(stateColors[0], "_EmissionColor", .5f));
+        buildingRender.material.DOColor(stateColors[1], "_EmissionColor", 0.1f).OnComplete(() => buildingRender.material.DOColor(stateColors[0], "_EmissionColor", .5f));
+        OnBuildingFinished?.Invoke();
     }
 
-    void CallBuilders()
-    {
-        foreach (var player in selectedPlayers)
-        {
-            if (player.selectedObject.TryGetComponent<Peasant>(out var builder))
-            {
-                builder.Build(this);
-            }
-        }
-    }
+
 
 }

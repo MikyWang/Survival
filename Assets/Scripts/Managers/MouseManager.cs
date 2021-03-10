@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class MouseManager : Singleton<MouseManager>
 {
-    public Texture2D arrow, select, cutTree, move, moveClicked, attack;
+    public Texture2D arrow, select, cutTree, build, move, moveClicked, attack;
     public event Action<Vector3> OnEnvironmentClicked;
     public event Action<IDamage> OnTreeClicked;
     RaycastHit hitInfo;
@@ -46,6 +46,9 @@ public class MouseManager : Singleton<MouseManager>
                 case "Player":
                     Cursor.SetCursor(select, new Vector2(0, 0), CursorMode.Auto);
                     break;
+                case "Building":
+                    Cursor.SetCursor(build, new Vector2(0, 0), CursorMode.Auto);
+                    break;
                 default:
                     Cursor.SetCursor(arrow, new Vector2(0, 0), CursorMode.Auto);
                     break;
@@ -77,6 +80,12 @@ public class MouseManager : Singleton<MouseManager>
                 case "Tree":
                     var target = col.GetComponent<IDamage>();
                     OnTreeClicked?.Invoke(target);
+                    break;
+                case "Building":
+                    if (col.TryGetComponent<Building>(out var building))
+                    {
+                        GameManager.Instance.CallBuildersToBuildBuilding(building);
+                    }
                     break;
             }
         }
