@@ -34,7 +34,15 @@ public class SkillSlot : MonoBehaviour, IObserver<SkillBase>
     public void OnNext(SkillBase skill)
     {
         cooldownImg.fillAmount = skill.cooldownPercent;
-        cooldownText.text = $"{Mathf.Max(0, skill.cooldown).ToString("N1")}s";
+        if (skill.cooldown <= 0)
+        {
+            cooldownText.gameObject.SetActive(false);
+        }
+        else
+        {
+            cooldownText.text = $"{skill.cooldown.ToString("N1")}s";
+            cooldownText.gameObject.SetActive(true);
+        }
     }
 
     public void Excute()

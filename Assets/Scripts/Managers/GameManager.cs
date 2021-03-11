@@ -14,16 +14,13 @@ public class GameManager : Singleton<GameManager>
     public List<GameObject> patrolPoints { get; private set; }
     public List<ISelected> selectedPlayers { get; private set; }
     public List<ISelected> playersInView { get; private set; }
-    // CinemachineFreeLook Cam;
     override protected void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this);
-        // DOTween.Init();
         patrolPoints = GameObject.FindGameObjectsWithTag("PatrolPoint").ToList();
         selectedPlayers = new List<ISelected>();
         playersInView = new List<ISelected>();
-        // Cam = FindObjectOfType<CinemachineFreeLook>();
     }
 
     private void Start()
