@@ -6,9 +6,10 @@ using UnityEngine.EventSystems;
 
 public class MouseManager : Singleton<MouseManager>
 {
-    public Texture2D arrow, select, cutTree, build, move, moveClicked, attack;
+    [SerializeField] Texture2D arrow, select, cutTree, build, move, moveClicked, attack;
     public event Action<Vector3> OnEnvironmentClicked;
     public event Action<IDamage> OnTreeClicked;
+
     RaycastHit hitInfo;
     bool isMoveClicked;
     override protected void Awake()

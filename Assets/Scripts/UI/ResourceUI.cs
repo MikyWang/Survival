@@ -12,7 +12,7 @@ public class ResourceUI : MonoBehaviour, IObserver<Resource>
     private void Start()
     {
         text = GetComponentInChildren<TMP_Text>();
-        var resource = GameManager.Instance.resources.Find(r => r.id == id);
+        var resource = GameManager.Instance.GetResource(id);
         resource.Subscribe(this);
     }
     public void OnCompleted() { }

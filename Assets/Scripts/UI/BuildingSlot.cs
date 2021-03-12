@@ -35,8 +35,8 @@ public class BuildingSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     bool CheckResources()
     {
-        var woodHaves = GameManager.Instance.resources.Find(x => x.id == ResourceId.Wood).amount;
-        var goldHaves = GameManager.Instance.resources.Find(x => x.id == ResourceId.Gold).amount;
+        var woodHaves = GameManager.Instance.GetResource(ResourceId.Wood).amount;
+        var goldHaves = GameManager.Instance.GetResource(ResourceId.Gold).amount;
         return woodHaves >= so.woodCost && goldHaves >= so.goldCost;
     }
 

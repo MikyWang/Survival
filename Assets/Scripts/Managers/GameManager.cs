@@ -8,9 +8,9 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
-    public GameObject player;
-    public GameObject highlightingPrefab;
-    public List<Resource> resources;
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject highlightingPrefab;
+    [SerializeField] List<Resource> resources;
     public List<GameObject> patrolPoints { get; private set; }
     public List<ISelected> selectedPlayers { get; private set; }
     public List<ISelected> playersInView { get; private set; }
@@ -69,6 +69,11 @@ public class GameManager : Singleton<GameManager>
                 ToggleSelector(selectedPlayer);
             }
         }
+    }
+
+    public Resource GetResource(ResourceId id)
+    {
+        return resources.Find(x => x.id == id);
     }
 
     public void UpdatePlayersInView(ISelected player)
