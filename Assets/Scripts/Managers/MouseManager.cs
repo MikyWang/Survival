@@ -7,15 +7,15 @@ using UnityEngine.EventSystems;
 public class MouseManager : Singleton<MouseManager>
 {
     [SerializeField] Texture2D arrow, select, cutTree, build, move, moveClicked, attack;
-    public event Action<Vector3> OnEnvironmentClicked;
-    public event Action<IDamage> OnTreeClicked;
-
+    // public event Action<Vector3> OnEnvironmentClicked;
     RaycastHit hitInfo;
-    bool isMoveClicked;
+    IMouseState currentState;
+    Dictionary<Tag, IMouseState> mouseStates;
     override protected void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this);
+        InitCursorData();
     }
     private void Update()
     {
@@ -24,13 +24,39 @@ public class MouseManager : Singleton<MouseManager>
             Cursor.SetCursor(arrow, new Vector2(0, 0), CursorMode.Auto);
             return;
         }
-        SetCursorTexture();
+        // SetCursorTexture();
+        SwitchMouseState();
         MouseControl();
+    }
+
+    //TODO:添加剩余鼠标状态
+    void InitCursorData()
+    {
+        mouseStates = new Dictionary<Tag, IMouseState>()
+        {
+            {Tag.Untagged,new MouseDefaultState()},
+            {Tag.Ground,new MouseOnGroundState()},
+            {Tag.Tree,new MouseOnTreeState()}
+        };
+    }
+    void SwitchMouseState()
+    {
+        hitInfo = Utility.CameraRay();
+        var tag = (Tag)Enum.Parse(typeof(Tag), hitInfo.collider?.tag);
+
+        if (!mouseStates.ContainsKey(tag))
+        {
+            currentState = mouseStates[Tag.Untagged];
+        }
+        else
+        {
+            currentState = mouseStates[tag];
+        }
+        currentState.Hover();
     }
 
     void SetCursorTexture()
     {
-        if (isMoveClicked) return;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hitInfo))
@@ -61,43 +87,39 @@ public class MouseManager : Singleton<MouseManager>
     {
         if (Input.GetMouseButtonDown(0) && hitInfo.collider)
         {
-            var col = hitInfo.collider;
-            switch (col.tag)
-            {
-                case "Player":
-                    GameManager.Instance.ToggleSelector(col.GetComponent<ISelected>());
-                    break;
-            }
+            currentState.LeftClick(ref hitInfo);
+            // var col = hitInfo.collider;
+            // switch (col.tag)
+            // {
+            //     case "Player":
+            //         GameManager.Instance.ToggleSelector(col.GetComponent<ISelected>());
+            //         break;
+            // }
         }
         if (Input.GetMouseButton(1) && hitInfo.collider)
         {
-            var col = hitInfo.collider;
-            switch (col.tag)
-            {
-                case "Ground":
-                    StartCoroutine(SetMoveCursor());
-                    OnEnvironmentClicked?.Invoke(hitInfo.point);
-                    break;
-                case "Tree":
-                    var target = col.GetComponent<IDamage>();
-                    OnTreeClicked?.Invoke(target);
-                    break;
-                case "Building":
-                    if (col.TryGetComponent<Building>(out var building))
-                    {
-                        GameManager.Instance.CallBuildersToBuildBuilding(building);
-                    }
-                    break;
-            }
+            currentState.RightClick(ref hitInfo);
+            // var col = hitInfo.collider;
+            // switch (col.tag)
+            // {
+            //     case "Ground":
+            //         StartCoroutine(SetMoveCursor());
+            //         // OnEnvironmentClicked?.Invoke(hitInfo.point);
+            //         break;
+            //     case "Tree":
+            //         var target = col.GetComponent<IDamage>();
+            //         OnTreeClicked?.Invoke(target);
+            //         break;
+            //     case "Building":
+            //         if (col.TryGetComponent<Building>(out var building))
+            //         {
+            //             GameManager.Instance.CallBuildersToBuildBuilding(building);
+            //         }
+            //         break;
+            // }
         }
     }
 
-    IEnumerator SetMoveCursor()
-    {
-        isMoveClicked = true;
-        Cursor.SetCursor(moveClicked, new Vector2(0, 0), CursorMode.Auto);
-        yield return new WaitForSeconds(0.1f);
-        isMoveClicked = false;
-    }
+
 
 }

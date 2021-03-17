@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,13 @@ public class GameManager : Singleton<GameManager>
             {
                 builder.Build(building);
             }
+        }
+    }
+    public void CallSelectedPlayerDoWork(Action<ISelected> work)
+    {
+        foreach (var player in selectedPlayers)
+        {
+            work?.Invoke(player);
         }
     }
     public void ToggleSelector(ISelected selectedPlayer)

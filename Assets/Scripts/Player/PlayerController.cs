@@ -28,14 +28,6 @@ public partial class PlayerController : ControllerBase, ISelected
         GameManager.Instance.ToggleSelector(this);
     }
 
-    private void OnDestroy()
-    {
-        if (MouseManager.IsInitialized && isSelected)
-        {
-            MouseManager.Instance.OnEnvironmentClicked -= Move;
-        }
-    }
-
     public override void Attack()
     {
         throw new System.NotImplementedException();
@@ -69,7 +61,6 @@ public partial class PlayerController : ControllerBase, ISelected
         {
             Instantiate(highlightingPrefab, transform);
         }
-        MouseManager.Instance.OnEnvironmentClicked += Move;
 
     }
 
@@ -77,7 +68,6 @@ public partial class PlayerController : ControllerBase, ISelected
     {
         var ring = transform.Find("Highlight Ring(Clone)");
         ring?.gameObject.SetActive(false);
-        MouseManager.Instance.OnEnvironmentClicked -= Move;
     }
 
 

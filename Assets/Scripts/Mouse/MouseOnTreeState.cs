@@ -2,14 +2,24 @@ using UnityEngine;
 
 public class MouseOnTreeState : MouseStateBase
 {
-    public MouseOnTreeState(Tag tag, Texture2D icon) : base(tag, icon) { }
-    public override void OnStateLeftClick()
+    protected override Tag id => Tag.Tree;
+    GameManager gameManager => GameManager.Instance;
+    public MouseOnTreeState() : base() { }
+    public override void LeftClick(ref RaycastHit hit)
     {
-        throw new System.NotImplementedException();
     }
 
-    public override void OnStateRightClick()
+    public override void RightClick(ref RaycastHit hit)
     {
-        throw new System.NotImplementedException();
+        if (hit.collider.TryGetComponent<TreeController>(out var tree))
+        {
+            gameManager.CallSelectedPlayerDoWork(player =>
+                  {
+                      if (player.selectedObject.TryGetComponent<Peasant>(out var peasant))
+                      {
+                          peasant.CutTree(tree);
+                      }
+                  });
+        }
     }
 }

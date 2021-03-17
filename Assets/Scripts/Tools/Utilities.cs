@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Utility : MonoBehaviour
+public class Utility
 {
     public static Vector3 MouseToTerrainPosition()
     {
@@ -13,7 +13,7 @@ public class Utility : MonoBehaviour
     }
     public static RaycastHit CameraRay()
     {
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit info, 100))
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit info))
             return info;
         return new RaycastHit();
     }

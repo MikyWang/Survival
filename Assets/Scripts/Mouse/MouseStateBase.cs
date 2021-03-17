@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,18 +6,17 @@ using UnityEngine;
 [System.Serializable]
 public abstract class MouseStateBase : IMouseState
 {
-    protected Tag _tag;
-    protected Texture2D _icon;
-    public string tag => _tag.ToString();
-    public MouseStateBase(Tag tag, Texture2D icon)
+    protected Cursor_SO cursorData;
+    protected abstract Tag id { get; }
+    public string tag => id.ToString();
+    public MouseStateBase()
     {
-        _tag = tag;
-        _icon = icon;
+        cursorData = GameObject.Instantiate(SOManager.Instance.cursorDataDic[id]);
     }
-    public virtual void OnStateHover()
+    public virtual void Hover()
     {
-        Cursor.SetCursor(_icon, new Vector2(0, 0), CursorMode.Auto);
+        Cursor.SetCursor(cursorData.icons[0], new Vector2(0, 0), CursorMode.Auto);
     }
-    public abstract void OnStateLeftClick();
-    public abstract void OnStateRightClick();
+    public abstract void LeftClick(ref RaycastHit hit);
+    public abstract void RightClick(ref RaycastHit hit);
 }

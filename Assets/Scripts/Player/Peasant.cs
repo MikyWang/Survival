@@ -19,12 +19,10 @@ public class Peasant : PlayerController
     public override void Select(GameObject highlightingPrefab)
     {
         base.Select(highlightingPrefab);
-        MouseManager.Instance.OnTreeClicked += CutTree;
     }
     public override void UnSelect()
     {
         base.UnSelect();
-        MouseManager.Instance.OnTreeClicked -= CutTree;
     }
 
     private void ChangeWeapon(WeaponType weaponType)
@@ -57,7 +55,7 @@ public class Peasant : PlayerController
         cutTree.canUse = false;
         ShowPackage(PackageType.Wood);
     }
-    private void CutTree(IDamage defender)
+    public void CutTree(IDamage defender)
     {
         ChangeWeapon(WeaponType.Axe);
         cutTree.Excute(defender);

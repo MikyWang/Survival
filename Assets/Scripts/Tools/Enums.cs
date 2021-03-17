@@ -9,4 +9,4 @@ public enum MonsterState { Patrol, Chase }
 public enum MonsterId { Skeleton, Bat }
 public enum ResourceId { Wood, Food, Gold }
 public enum BuildingId { SmallTent, MiddleTent, LargeTent }
-public enum Tag { Player, Ground, PatrolPoint, Ring, Tree, HealthBarCanvas, FxTemporaire, Building }
+public enum Tag { Untagged, Player, Ground, PatrolPoint, Ring, Tree, HealthBarCanvas, FxTemporaire, Building }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public interface IMouseState
 {
     public string tag { get; }
-    public void OnStateHover();
-    public void OnStateLeftClick();
-    public void OnStateRightClick();
+    public void Hover();
+    public void LeftClick(ref RaycastHit hit);
+    public void RightClick(ref RaycastHit hit);
 }
