@@ -46,11 +46,15 @@ public partial class Building : IObservable<Building>
     {
         buildingStats = Instantiate(SOManager.Instance.buildingDataDic[id]);
         buildingMeshTransform.localPosition = Vector3.down * height;
-        GameManager.Instance.CallBuildersToBuildBuilding(this);
+        GameManager.Instance.CallSelectedPlayerDoWork<Peasant>(builder =>
+        {
+            builder.Build(this);
+        });
     }
 
     public void GlowUp()
     {
+        if (isFinished) return;
         buildingProgress += progressEveryTime;
         buildingMeshTransform.localPosition = Vector3.Lerp(Vector3.down * height, new Vector3(0, originalHeight, 0), (float)buildingProgress / 100);
         Instantiate(buildParticlePrefab, transform.position, Quaternion.identity);

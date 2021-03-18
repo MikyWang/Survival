@@ -28,16 +28,7 @@ public class GameManager : Singleton<GameManager>
     {
         Instantiate(player);
     }
-    public void CallBuildersToBuildBuilding(Building building)
-    {
-        foreach (var player in selectedPlayers)
-        {
-            if (player.selectedObject.TryGetComponent<Peasant>(out var builder))
-            {
-                builder.Build(building);
-            }
-        }
-    }
+
     public void CallSelectedPlayerDoWork<T>(Action<T> work)
     {
         foreach (var player in selectedPlayers)

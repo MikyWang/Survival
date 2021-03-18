@@ -75,10 +75,7 @@ public class Build : SkillBase
         }
         if (target != null && target.self.TryGetComponent<Building>(out var building))
         {
-            if (!building.isFinished)
-            {
-                building.GlowUp();
-            }
+            building.GlowUp();
         }
     }
 }

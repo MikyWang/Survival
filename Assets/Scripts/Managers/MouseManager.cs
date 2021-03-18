@@ -17,12 +17,10 @@ public class MouseManager : Singleton<MouseManager>
     }
     private void Update()
     {
-        // SetCursorTexture();
         SwitchMouseState();
         MouseControl();
     }
-
-    //TODO:添加剩余鼠标状态
+    //TODO:修改为组件模式
     void InitCursorData()
     {
         mouseStates = new Dictionary<Tag, IMouseState>()
@@ -31,6 +29,7 @@ public class MouseManager : Singleton<MouseManager>
             {Tag.Ground,new MouseOnGroundState()},
             {Tag.Tree,new MouseOnTreeState()},
             {Tag.Player,new MouseOnPlayerState()},
+            {Tag.Building,new MouseOnBuildingState()},
         };
     }
     void SwitchMouseState()

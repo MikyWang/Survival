@@ -71,7 +71,6 @@ public class RectSelector : MonoBehaviour
 
     private void LateUpdate()
     {
-        //FIXME:考虑是否要屏蔽UI
         if (!isSelected && EventSystem.current && EventSystem.current.IsPointerOverGameObject())
         {
             boxTransform.sizeDelta = Vector2.zero;

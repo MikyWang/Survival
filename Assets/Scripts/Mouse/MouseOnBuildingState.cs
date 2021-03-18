@@ -13,5 +13,12 @@ public class MouseOnBuildingState : MouseStateBase
 
     public override void RightClick(ref RaycastHit hit)
     {
+        if (hit.collider.TryGetComponent<Building>(out var building))
+        {
+            gameManager.CallSelectedPlayerDoWork<Peasant>(builder =>
+            {
+                builder.Build(building);
+            });
+        }
     }
 }
