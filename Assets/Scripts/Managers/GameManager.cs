@@ -38,11 +38,14 @@ public class GameManager : Singleton<GameManager>
             }
         }
     }
-    public void CallSelectedPlayerDoWork(Action<ISelected> work)
+    public void CallSelectedPlayerDoWork<T>(Action<T> work)
     {
         foreach (var player in selectedPlayers)
         {
-            work?.Invoke(player);
+            if (player.selectedObject.TryGetComponent<T>(out var comp))
+            {
+                work?.Invoke(comp);
+            }
         }
     }
     public void ToggleSelector(ISelected selectedPlayer)

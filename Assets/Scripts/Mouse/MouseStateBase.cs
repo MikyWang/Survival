@@ -7,6 +7,7 @@ using UnityEngine;
 public abstract class MouseStateBase : IMouseState
 {
     protected Cursor_SO cursorData;
+    protected GameManager gameManager => GameManager.Instance;
     protected abstract Tag id { get; }
     public string tag => id.ToString();
     public MouseStateBase()

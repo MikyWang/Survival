@@ -7,8 +7,6 @@ public class MouseOnGroundState : MouseStateBase
 {
     protected override Tag id => Tag.Ground;
     bool isMoveClicked;
-    GameManager gameManager => GameManager.Instance;
-    public MouseOnGroundState() : base() { }
     public override void Hover()
     {
         if (isMoveClicked) return;
@@ -21,12 +19,9 @@ public class MouseOnGroundState : MouseStateBase
     {
         gameManager.StartCoroutine(SetMoveCursor());
         var position = hit.point;
-        gameManager.CallSelectedPlayerDoWork((player) =>
+        gameManager.CallSelectedPlayerDoWork<ControllerBase>((player) =>
         {
-            if (player.selectedObject.TryGetComponent<PlayerController>(out var controller))
-            {
-                controller.Move(position);
-            }
+            player.Move(position);
         });
     }
     IEnumerator SetMoveCursor()
