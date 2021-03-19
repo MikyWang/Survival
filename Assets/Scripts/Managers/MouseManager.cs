@@ -20,7 +20,6 @@ public class MouseManager : Singleton<MouseManager>
         SwitchMouseState();
         MouseControl();
     }
-    //TODO:修改为组件模式
     void InitCursorData()
     {
         mouseStates = new Dictionary<Tag, IMouseState>()

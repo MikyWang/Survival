@@ -5,56 +5,28 @@ using UnityEngine;
 public class SOManager : Singleton<SOManager>
 {
     [Header("基本数据")]
-    [SerializeField] List<SOData<LiveId, Live_SO>> basicDataList;
+    [SerializeField] SOStorage<LiveId, Live_SO> _basicDataDic;
     [Header("怪物生成")]
-    [SerializeField] List<SOData<MonsterId, MonsterSpawner_SO>> spawnDataList;
+    [SerializeField] SOStorage<MonsterId, MonsterSpawner_SO> _spawnDataDic;
     [Header("技能数据")]
-    [SerializeField] List<SOData<SkillId, Skill_SO>> skillDataList;
+    [SerializeField] SOStorage<SkillId, Skill_SO> _skillDataDic;
     [Header("资源数据")]
-    [SerializeField] List<SOData<ResourceId, Resource_SO>> resourceDataList;
+    [SerializeField] SOStorage<ResourceId, Resource_SO> _resourceDataDic;
     [Header("建筑数据")]
-    [SerializeField] List<SOData<BuildingId, Building_SO>> buildingDataList;
+    [SerializeField] SOStorage<BuildingId, Building_SO> _buildingDataDic;
     [Header("鼠标指针")]
-    [SerializeField] List<SOData<Tag, Cursor_SO>> cursorDataList;
-    public Dictionary<LiveId, Live_SO> basicDataDic { get; private set; }
-    public Dictionary<MonsterId, MonsterSpawner_SO> spawnDataDic { get; private set; }
-    public Dictionary<SkillId, Skill_SO> skillDataDic { get; private set; }
-    public Dictionary<ResourceId, Resource_SO> resourceDataDic { get; private set; }
-    public Dictionary<BuildingId, Building_SO> buildingDataDic { get; private set; }
-    public Dictionary<Tag, Cursor_SO> cursorDataDic { get; private set; }
+    [SerializeField] SOStorage<Tag, Cursor_SO> _cursorDataDic;
+
+    public SOStorage<LiveId, Live_SO> basicDataDic => _basicDataDic;
+    public SOStorage<MonsterId, MonsterSpawner_SO> spawnDataDic => _spawnDataDic;
+    public SOStorage<SkillId, Skill_SO> skillDataDic => _skillDataDic;
+    public SOStorage<ResourceId, Resource_SO> resourceDataDic => _resourceDataDic;
+    public SOStorage<BuildingId, Building_SO> buildingDataDic => _buildingDataDic;
+    public SOStorage<Tag, Cursor_SO> cursorDataDic => _cursorDataDic;
 
     override protected void Awake()
     {
         base.Awake();
-        InitDictionary();
         DontDestroyOnLoad(this);
     }
-    public void InitDictionary()
-    {
-        basicDataDic = InitDictionaryInternal(basicDataList);
-        spawnDataDic = InitDictionaryInternal(spawnDataList);
-        skillDataDic = InitDictionaryInternal(skillDataList);
-        resourceDataDic = InitDictionaryInternal(resourceDataList);
-        buildingDataDic = InitDictionaryInternal(buildingDataList);
-        cursorDataDic = InitDictionaryInternal(cursorDataList);
-    }
-    Dictionary<TId, TSO> InitDictionaryInternal<TId, TSO>(List<SOData<TId, TSO>> dataList)
-    {
-        var dictionary = new Dictionary<TId, TSO>();
-        foreach (var data in dataList)
-        {
-            if (!dictionary.ContainsKey(data.id))
-            {
-                dictionary.Add(data.id, data.so);
-            }
-        }
-        return dictionary;
-    }
-
-}
-[System.Serializable]
-public class SOData<TId, TSO>
-{
-    public TId id;
-    public TSO so;
 }

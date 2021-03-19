@@ -29,7 +29,7 @@ public class GameManager : Singleton<GameManager>
         Instantiate(player);
     }
 
-    public void CallSelectedPlayerDoWork<T>(Action<T> work)
+    public void CallSelectedPlayerDoWork<T>(Action<T> work) where T : Component
     {
         foreach (var player in selectedPlayers)
         {
@@ -53,7 +53,6 @@ public class GameManager : Singleton<GameManager>
         }
         SkillUIManager.Instance.UpdateSkillUI();
     }
-
     public void SelectRangePlayers(Rect rect)
     {
         foreach (var player in selectedPlayers)

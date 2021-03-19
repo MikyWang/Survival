@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BuildingUIManager : Singleton<BuildingUIManager>
 {
-    Dictionary<BuildingId, Building_SO> buildingDic => SOManager.Instance.buildingDataDic;
+    SOStorage<BuildingId, Building_SO> buildingDic => SOManager.Instance.buildingDataDic;
     [SerializeField] Transform buildingGrid;
     [SerializeField] BuildingSlot buildingSlotPrefeb;
     [SerializeField] GameObject buildingPanel;
@@ -50,14 +50,11 @@ public class BuildingUIManager : Singleton<BuildingUIManager>
     {
         var building = Instantiate(so.buildingPrefab, pos, Quaternion.identity).GetComponent<Building>();
     }
-
-
     public void ShowPanel()
     {
         buildingPanel.SetActive(true);
         buildingPanel.transform.DOMoveX(0, .3f).From().SetEase(Ease.Linear);
     }
-
     public void HidePanel()
     {
         buildingPanel.SetActive(false);
